@@ -8,12 +8,11 @@ $action = $_REQUEST['action'] ?? 'listeServices';
 
 switch ($action) {
 
-    case 'listeservices':
-        
+    case 'listeservices':        
         showListeServices();
         break;
 
-    case 'detailservice':
+    case 'detailservices':
         showDetailService();
         break;
 

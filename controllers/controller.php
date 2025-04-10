@@ -1,4 +1,5 @@
 <?php
+
 function showListeServices(){
     $listeServices = getListeServices();
     render("listeServices", [
@@ -10,6 +11,8 @@ function showListeServices(){
 
 function showDetailService(){
     $service= getService();
-    displayDetailService($service);
+   render("detailservices", [
+        'service' => $service
+    ]);
 }
     
