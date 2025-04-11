@@ -3,8 +3,8 @@
 class Controller {
 
     function showListeServices(){
-        $model = new Model();
-        $listeServices = $model -> getListeServices();
+        $serviceManager = new serviceManager();
+        $listeServices = $serviceManager -> getListeServices();
 
         $views = new Views();
         $views -> render("listeServices", [
@@ -15,9 +15,9 @@ class Controller {
     }
 
     function showDetailService(){
-        $model = new Model();
+        $serviceManager = new serviceManager();
         $id = $_REQUEST['id'] ?? -1;
-        $service= $model -> getService($id);
+        $service= $serviceManager -> getService($id);
 
         $views = new Views();
         $views->render("detailservices", [
