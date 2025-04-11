@@ -1,18 +1,28 @@
 <?php
 
-function showListeServices(){
-    $listeServices = getListeServices();
-    render("listeServices", [
-        'listeServices' => $listeServices
-    ]);
+class Controller {
+
+    function showListeServices(){
+        $model = new Model();
+        $listeServices = $model -> getListeServices();
+
+        $views = new Views();
+        $views -> render("listeServices", [
+            'listeServices' => $listeServices
+        ]);
 
 
+    }
+
+    function showDetailService(){
+        $model = new Model();
+        $id = $_REQUEST['id'] ?? -1;
+        $service= $model -> getService($id);
+
+        $views = new Views();
+        $views->render("detailservices", [
+            'service' => $service
+        ]);
+    }
+ 
 }
-
-function showDetailService(){
-    $service= getService();
-   render("detailservices", [
-        'service' => $service
-    ]);
-}
-    
