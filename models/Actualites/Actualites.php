@@ -5,7 +5,7 @@ class Actualite extends AbstractEntity  {
     private int $id;
     private string $titre;
     private string $contenu;
-    private date $date_publication;
+    private DateTime $date;
 
 
     public function setId (int $id): void{
@@ -31,11 +31,12 @@ class Actualite extends AbstractEntity  {
         return $this->contenu;
     }
 
-    public function setDate ( date $date_publication){
-        $this->date_publication = $date_publication;
+    public function setDate ( string $date):void {
+        $this->date = New DateTime($date);
     }
 
-    public function getDate (): date {
-        return $this->date_publication;
+    public function getDate (): DateTime {
+        return $this->date;
     }
+
 }

@@ -2,7 +2,25 @@
 
 class Controller {
 
-    function showListeServices(){
+    function showAccueil(){
+        $views = new Views();
+        $servicesManager = new ServiceManager();  
+        $services = $servicesManager->getListeServices(); 
+        $horaireManager = new HoraireManager();
+        $horaires = $horaireManager->getListeHoraires(); 
+        $data = [
+            
+            'presentation' => 'Dr. Dupont est un spécialiste en dentisterie...',
+            'services' => $services, 
+            'horaires' => $horaires
+        ];
+        
+        // Rendu de la vue d'accueil avec les données
+        $views->render("accueil", $data);
+    
+    }
+        
+        function showListeServices(){
         $serviceManager = new serviceManager();
         $listeServices = $serviceManager -> getListeServices();
 

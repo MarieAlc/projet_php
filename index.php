@@ -4,16 +4,22 @@ include_once 'models/Services/Service.php';
 include_once 'models/Services/ServiceManager.php';
 include_once 'models/Actualites/Actualites.php';
 include_once 'models/Actualites/ActualitesManager.php';
+include_once 'models/Horaires/Horaire.php';
+include_once 'models/Horaires/HoraireManager.php';
 include_once 'views/Views.php';
 include_once 'controllers/Controller.php';
 
 
-$action = $_REQUEST['action'] ?? 'listeservices';
+$action = $_REQUEST['action'] ?? 'accueil';
 
 try {
     $controller = new Controller();
 
     switch ($action) {
+        case 'accueil':
+            $controller -> showAccueil();
+          
+            break;
     
     
         case 'listeservices':        
@@ -26,6 +32,10 @@ try {
 
         case 'actualites':
             $controller -> showListeActualites();
+            break;
+
+        case 'apropos':
+
             break;
     
     

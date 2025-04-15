@@ -10,11 +10,11 @@
         <div>LOGO</div>
         <div>
             <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
-                <li>Accueil</li>
+                <li><a href="index.php?action=accueil">Accueil</a></li>
                 <li><a href="index.php?action=listeservices">Services</a></li>
                 <li><a href="index.php?action=actualites">Actualitées</a></li>
                 <li>Rendez-Vous</li>
-                <li>A propos</li>
+                <li><a href="index.php?action=apropos">A propos</a></li>
          </ul>
         </div>
     </nav>

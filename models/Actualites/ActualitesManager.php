@@ -8,8 +8,10 @@ class ActualitesManager extends AbstractEntityManager {
         $statement = $this->db->query($sql);
 
         $listeActualites= [];
-        while ($actualite = $statement->fetch()) {
-            $listeActualites[] = new Actualite($actualite);            
+        if($statement){
+            while ($actualite = $statement->fetch()) {
+                $listeActualites[] = new Actualite($actualite);            
+            }
         }
         return $listeActualites;
     }
@@ -21,7 +23,7 @@ class ActualitesManager extends AbstractEntityManager {
         ]);
         $actualite = $statement->fetch();
         if($actualite){
-            return new actualite($actualite);
+            return new Actualite($actualite);
         }
         return null;
 
