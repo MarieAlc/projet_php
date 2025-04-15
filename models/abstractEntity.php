@@ -1,6 +1,6 @@
 <?php
 
-class abstractEntity{
+class AbstractEntity{
 
     public function __construct (array $data = []){
         // hydrate l'objet avec les données du tableau associatif

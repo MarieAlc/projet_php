@@ -1,7 +1,7 @@
 <?php
 include_once ('models/DBManager.php');
 
-abstract class abstractEntityManager {
+abstract class AbstractEntityManager {
 
     public $db;
     

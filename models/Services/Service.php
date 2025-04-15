@@ -1,14 +1,12 @@
 <?php
 include_once 'models/abstractEntity.php';
 
-class service extends abstractEntity {
+class Service extends AbstractEntity {
     private int $id;
     private string $nom;
     private string $description;
 
 
-
-    // verifier syntaxe + rapide a faire 
     public function setId (int $id): void{
         $this->id = $id;
     }

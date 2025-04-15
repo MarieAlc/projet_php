@@ -1,5 +1,5 @@
 <?php
-class views {    
+class Views {    
     function render ($viewName, $params){
         ob_start();
         extract($params);

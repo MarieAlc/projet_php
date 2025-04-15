@@ -1,7 +1,7 @@
 <?php
-include_once 'models/abstractEntityManager.php';
+include_once 'models/AbstractEntityManager.php';
 
-class serviceManager extends abstractEntityManager {
+class ServiceManager extends AbstractEntityManager {
 
     public function getListeServices(){
         $sql = "SELECT * FROM service";
@@ -9,7 +9,7 @@ class serviceManager extends abstractEntityManager {
 
         $listeServices= [];
         while ($service = $statement->fetch()) {
-            $listeServices[] = new service($service);            
+            $listeServices[] = new Service($service);            
         }
         return $listeServices;
     }

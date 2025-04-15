@@ -24,5 +24,16 @@ class Controller {
             'service' => $service
         ]);
     }
+
+    function showListeActualites(){
+        $actualitesManager = new ActualitesManager();
+        $listeActualites = $actualitesManager -> getListeActualites();
+
+        $views = new Views();
+        $views -> render("listeActualites", [
+            'listeActualites' => $listeActualites
+        ]);
+    }
+
  
 }
