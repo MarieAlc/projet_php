@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Dupont</title>
-</head>
-<body>
-    
-    <section>
+   
+    <section >
         <h2>Présentation</h2>
-        <p><?= $presentation ?></p> <!-- Présentation dynamique du Dr. Dupont -->
+        <div>
+            <p><?= $presentation ?></p> 
+        </div>
+        <div>
+            <img src="image/lampe.jpg" alt="dentiste dans son cabinet" width="300" height="200">
+            <img src="image/radio.jpg" alt="dentiste avec radio" width="300" height="200">
+            <img src="image/siege.jpg" alt="cabinet dentiste" width="300" height="200">
+        </div>
     </section>
     
     <section>
         <h2>Nos services</h2>
         <ul>
-        <?php foreach ($services as $service): ?>
-                <li><?= $service->getNom() ?> - <?= $service->getDescription() ?></li>
+            <?php foreach ($services as $service): ?>
+                <li>
+                <a href="index.php?action=detailservices&id=<?= $service->getId() ?>">
+                <?= $service->getNom() ?> - <?= $service->getPrix() ?> €</a>
+                </li>
             <?php endforeach; ?>
         </ul>
     </section>
@@ -37,6 +39,4 @@
         </ul>
     </section>
 
-    <button><a href="prendre-rendez-vous.php">Prendre rendez-vous</a></button>
-</body>
-</html>
+    <button><a href="index.php?action=prendrerendezvous">Prendre rendez-vous</a></button>

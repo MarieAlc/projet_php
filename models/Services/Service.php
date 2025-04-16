@@ -5,6 +5,7 @@ class Service extends AbstractEntity {
     private int $id;
     private string $nom;
     private string $description;
+    private int $prix;
 
 
     public function setId (int $id): void{
@@ -28,5 +29,12 @@ class Service extends AbstractEntity {
     }
     public function getDescription (): string {
         return $this->description;
+    }
+
+    public function setPrix (int $prix){
+        $this->prix = $prix;
+    }
+    public function getPrix (): int {
+        return $this->prix;
     }
 }

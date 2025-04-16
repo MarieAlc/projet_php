@@ -1,24 +1,20 @@
 <?php
-include_once 'config/config.php';
-include_once 'models/Services/Service.php';
-include_once 'models/Services/ServiceManager.php';
-include_once 'models/Actualites/Actualites.php';
-include_once 'models/Actualites/ActualitesManager.php';
-include_once 'models/Horaires/Horaire.php';
-include_once 'models/Horaires/HoraireManager.php';
-include_once 'views/Views.php';
-include_once 'controllers/Controller.php';
+include_once 'incluse.php';
 
 
 $action = $_REQUEST['action'] ?? 'accueil';
 
 try {
     $controller = new Controller();
+    $controllerUtilisateur = new ControllerUtilisateur();
 
     switch ($action) {
         case 'accueil':
-            $controller -> showAccueil();
-          
+            $controller -> showAccueil();          
+            break;
+
+        case 'prendrerendezvous':
+            $controller->showPrendreRendezVous();
             break;
     
     
@@ -35,9 +31,21 @@ try {
             break;
 
         case 'apropos':
+            $controller -> showApropos();
 
             break;
-    
+
+        case 'inscription':
+            $controllerUtilisateur -> showInscription();
+            break;
+
+        case 'verifInscription':
+            $controllerUtilisateur -> verifInscription();
+            break;
+
+        case 'connexion':
+            $controllerUtilisateur ->showConnexion();
+            break;    
     
         default:
             echo('<h1>Erreur 404</h1>');

@@ -4,13 +4,19 @@ class Controller {
 
     function showAccueil(){
         $views = new Views();
+
         $servicesManager = new ServiceManager();  
         $services = $servicesManager->getListeServices(); 
+
         $horaireManager = new HoraireManager();
         $horaires = $horaireManager->getListeHoraires(); 
+
+        $presentationManager = new PresentationManager();
+        $presentation = $presentationManager->getPresentation();
+        
         $data = [
             
-            'presentation' => 'Dr. Dupont est un spécialiste en dentisterie...',
+            'presentation' => $presentation,
             'services' => $services, 
             'horaires' => $horaires
         ];
@@ -19,8 +25,16 @@ class Controller {
         $views->render("accueil", $data);
     
     }
+
+
+    function showPrendreRendezVous(){
+        $views = new Views();
+        $serviceManager = new ServiceManager();
+        $services = $serviceManager->getListeServices();
+        $views -> render("prendrerendezvous", ['services'=>$services]);
+    }
         
-        function showListeServices(){
+    function showListeServices(){
         $serviceManager = new serviceManager();
         $listeServices = $serviceManager -> getListeServices();
 
@@ -50,6 +64,16 @@ class Controller {
         $views = new Views();
         $views -> render("listeActualites", [
             'listeActualites' => $listeActualites
+        ]);
+    }
+
+    function showApropos(){
+        $aproposManager = new AproposManager();
+        $apropos = $aproposManager -> listeApropos();
+
+        $views = new Views();
+        $views -> render("apropos", [
+            'apropos' => $apropos
         ]);
     }
 

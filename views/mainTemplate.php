@@ -7,19 +7,22 @@
 </head>
 <header>
     <nav style="display: flex; justify-content: space-between; background-color:rgb(168, 200, 232); padding: 10px;">
-        <div>LOGO</div>
+        <div><img src="image/logo.png" alt="logo" style="height: 50px;"></div>
         <div>
             <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
                 <li><a href="index.php?action=accueil">Accueil</a></li>
                 <li><a href="index.php?action=listeservices">Services</a></li>
                 <li><a href="index.php?action=actualites">Actualitées</a></li>
-                <li>Rendez-Vous</li>
+                <li><a href="index.php?action=prendrerendezvous">Rendez-Vous</a></li>
                 <li><a href="index.php?action=apropos">A propos</a></li>
+                <li><a href="index.php?action=inscription">Inscription</a></li>
+                <li><a href="index.php?action=connexion">Connexion</a></li>
          </ul>
         </div>
     </nav>
 </header>
 <body>
+
     <h1>Bienvenue sur le site du DR.Dupont</h1>
     <main>
         <?= $content ?>
