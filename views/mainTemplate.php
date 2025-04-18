@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +16,15 @@
                 <li><a href="index.php?action=actualites">Actualitées</a></li>
                 <li><a href="index.php?action=prendrerendezvous">Rendez-Vous</a></li>
                 <li><a href="index.php?action=apropos">A propos</a></li>
-                <li><a href="index.php?action=inscription">Inscription</a></li>
-                <li><a href="index.php?action=connexion">Connexion</a></li>
+
+                <?php if (isset($_SESSION['user'])): ?>
+    <li><a href="index.php?action=profil">Profil</a></li>
+    <li><a href="index.php?action=deconnexion">Déconnexion</a></li>
+<?php else: ?>
+    <li><a href="index.php?action=inscription">Inscription</a></li>
+    <li><a href="index.php?action=connexion">Connexion</a></li>
+<?php endif; ?>
+
          </ul>
         </div>
     </nav>

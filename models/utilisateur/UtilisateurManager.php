@@ -14,18 +14,45 @@ class UtilisateurManager extends AbstractEntityManager {
 
         return $utilisateurs;
     }
+    public function isEmailUnique($mail) {
+        $sql = "SELECT COUNT(*) FROM utilisateur WHERE mail = :mail";
+        $statement = $this->db->prepare($sql);
+        $statement->execute(['mail' => $mail]);
+    
+        return $statement->fetchColumn() == 0;  // Si l'email n'est pas trouvé, on retourne true (disponible)
+    }
+    public function getUtilisateurByEmail($mail) {
+    
+        $query = "SELECT * FROM utilisateur WHERE mail = :mail";
+        $statement = $this->db->prepare($query);
+        $statement->execute(['mail' => $mail]);
+        
+        return $statement->fetch(PDO::FETCH_ASSOC); 
+    }
 
-    public function ajouterUtilisateur($nom, $prenom, $mail, $mot_de_passe_hash, $telephone) {
-        $sql = "INSERT INTO utilisateurs (nom, prenom, mail, mot_de_passe, telephone, isAdmin)
-                VALUES (:nom, :prenom, :mail, :mot_de_passe, :telephone, 0)";
+    public function ajouterUtilisateur($nom, $prenom, $mail, $motDePasseHash, $telephone) {
+        try {
+            // Vérifier si l'email est déjà utilisé
+            if (!$this->isEmailUnique($mail)) {
+                throw new Exception('L\'email est déjà utilisé.');
+            }
+    
+        $sql = "INSERT INTO utilisateur (nom, prenom, mail, motDePasse, telephone, isAdmin)
+                VALUES (:nom, :prenom, :mail, :motDePasse, :telephone, 0)";
         
         $statement = $this->db->prepare($sql);
         $statement->execute([
             'nom' => $nom,
             'prenom' => $prenom,
             'mail' => $mail,
-            'mot_de_passe' => $mot_de_passe_hash,
+            'motDePasse' => $motDePasseHash,
             'telephone' => $telephone
         ]);
+        } catch (Exception $e) {
+            // Retourne l'erreur si l'email est déjà pris ou autre problème
+            return ['error' => $e->getMessage()];
+        }
+
+        return ['success' => 'Utilisateur ajouté avec succès.'];
     }
 }

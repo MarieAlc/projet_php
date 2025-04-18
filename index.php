@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 include_once 'incluse.php';
 
 
@@ -39,13 +41,21 @@ try {
             $controllerUtilisateur -> showInscription();
             break;
 
-        case 'verifInscription':
-            $controllerUtilisateur -> verifInscription();
-            break;
-
         case 'connexion':
-            $controllerUtilisateur ->showConnexion();
+            $controllerUtilisateur -> showConnexion();
+    
             break;    
+            case 'verifConnexion':
+                $controllerUtilisateur->verifConnexion();
+                break;
+
+            case 'deconnexion':                    
+                $controllerUtilisateur->deconnexion();
+                 break;
+                
+        case 'profil':
+            $controllerUtilisateur -> showProfil();
+            break;
     
         default:
             echo('<h1>Erreur 404</h1>');

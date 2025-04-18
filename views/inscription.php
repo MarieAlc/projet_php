@@ -1,5 +1,18 @@
+
 <h2>Inscription</h2>
-<form action="index.php?action=verifInscription" method="post">
+
+<?php if (!empty($errors)): ?>
+    <div style="color: red;">
+        <ul>
+            <?php foreach ($errors as $error): ?>
+                <li><?= htmlspecialchars($error) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+<form action="/test/projet_php/index.php?action=inscription" method="post">
+
     <label>Nom :</label>
     <input type="text" name="nom" required><br>
 
@@ -13,8 +26,9 @@
     <input type="tel" name="telephone" required><br>
 
     <label>Mot de passe :</label>
-    <input type="password" name="mot_de_passe" required><br>
+    <input type="password" name="motDePasse" required><br>
 
     <input type="submit" value="S'inscrire">
 </form>
+
 <p>Déjà inscrit ? <a href="index.php?action=connexion">Connectez-vous ici</a></p>
