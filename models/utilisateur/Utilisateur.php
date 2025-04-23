@@ -10,6 +10,16 @@ class Utilisateur {
     private int $telephone;
     private string $isAdmin;
 
+    public function __construct(array $data) {
+        $this->id = $data['id'] ?? 0;
+        $this->nom = $data['nom'] ?? '';
+        $this->prenom = $data['prenom'] ?? '';
+        $this->mail = $data['mail'] ?? '';
+        $this->motDePasse = $data['motDePasse'] ?? '';
+        $this->telephone = $data['telephone'] ?? '';
+        $this->isAdmin = $data['isAdmin'] ?? 0;
+    }
+
     public function setId(int $id): void {        $this->id = $id;
     }
     public function getId(): int {
@@ -37,11 +47,11 @@ class Utilisateur {
         return $this->telephone;
     }
 
-    public function setEmail(string $email): void {
-        $this->email = $email;
+    public function setMail(string $mail): void {
+        $this->mail = $mail;
     }
-    public function getEmail(): string {
-        return $this->email;
+    public function getMail(): string {
+        return $this->mail;
     }
 
     public function setMotDePasse(string $motDePasse): void {

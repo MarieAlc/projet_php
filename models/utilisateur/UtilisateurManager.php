@@ -14,6 +14,20 @@ class UtilisateurManager extends AbstractEntityManager {
 
         return $utilisateurs;
     }
+    public function modifierRoleUtilisateur($userId, $newRole) {
+        // Vérifier que le nouveau rôle est soit 0 (utilisateur) soit 1 (admin)
+        if (!in_array($newRole, [0, 1])) {
+            throw new Exception("Rôle invalide.");
+        }
+    
+        // Mettre à jour le rôle dans la base de données
+        $sql = "UPDATE utilisateur SET isAdmin = :isAdmin WHERE id = :id";
+        $statement = $this->db->prepare($sql);
+        $statement->execute([
+            'isAdmin' => $newRole,
+            'id' => $userId
+        ]);
+    }
     public function isEmailUnique($mail) {
         $sql = "SELECT COUNT(*) FROM utilisateur WHERE mail = :mail";
         $statement = $this->db->prepare($sql);

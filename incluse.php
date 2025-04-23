@@ -10,7 +10,7 @@ include_once 'models/Actualites/ActualitesManager.php';
 include_once 'models/Horaires/Horaire.php';
 include_once 'models/Horaires/HoraireManager.php';
 
-include_once 'models/Presentation/presentationManager.php';
+include_once 'models/Presentation/PresentationManager.php';
 include_once 'models/presentation/Presentation.php';
 
 include_once 'models/rendezvous/RendezVous.php';
@@ -24,4 +24,7 @@ include_once 'models/utilisateur/UtilisateurManager.php';
 
 include_once 'views/Views.php';
 include_once 'controllers/Controller.php';
-include_once 'controllers/controllerUtilisateur.php';
+include_once 'controllers/ControllerUtilisateur.php';
+include_once 'controllers/ControllerProfil.php';
+include_once 'controllers/ControllerAdmin.php';
+include_once 'controllers/ControllerRendezVous.php';

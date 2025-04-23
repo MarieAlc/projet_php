@@ -4,8 +4,9 @@ include_once 'models/abstractEntity.php';
 class RendezVous extends AbstractEntity{
     private int $id;
     private string $date;
-    private DateTime $heure;
+    private  DateTime $heure;
     private string $motif;
+    private string $motifNom;
     private int $idClient;
     private string $mailPatient;
     
@@ -21,7 +22,19 @@ class RendezVous extends AbstractEntity{
     public function getDate (): string {
         return $this->date;
     }
-    public function setHeure (DateTime $heure): void{
+    public function setHeure($heure) {
+        if (is_string($heure)) {
+            try {
+                $heure = new DateTime($heure);
+            } catch (Exception $e) {
+                throw new Exception("Format d'heure invalide : " . $heure);
+            }
+        }
+    
+        if (!$heure instanceof DateTime) {
+            throw new TypeError("RendezVous::setHeure() attend un objet DateTime, reçu " . gettype($heure));
+        }
+    
         $this->heure = $heure;
     }
     public function getHeure (): DateTime {
@@ -32,6 +45,13 @@ class RendezVous extends AbstractEntity{
     }
     public function getMotif (): string {
         return $this->motif;
+    }
+
+    public function setMotifNom (string $nom): void{
+        $this->motifNom = $nom;
+    }
+    public function getMotifNom (): string {
+        return $this->motifNom;
     }
     public function setIdClient (int $idClient): void{
         $this->idClient = $idClient;

@@ -1,19 +1,20 @@
 <h2>Mon Profil</h2>
-<?php if (!empty($_SESSION['message'])): ?>
-    <div style="color: green;">
-        <?= htmlspecialchars($_SESSION['message']) ?>
-    </div>
-    <?php unset($_SESSION['message']); ?>
-<?php endif; ?>
 
-<?php if (isset($user)): ?>
-    <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
-    <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
-    <p><strong>Email :</strong> <?= htmlspecialchars($user['mail']) ?></p>
-    <p><strong>Téléphone :</strong> <?= htmlspecialchars($user['telephone']) ?></p>
+<p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
+<p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
+<p><strong>Email :</strong> <?= htmlspecialchars($user['mail']) ?></p>
+
+<h3>Mes Rendez-vous</h3>
+<?php if (!empty($rendezvousList)): ?>
+    <ul>
+        <?php foreach ($rendezvousList as $rdv): ?>
+            <li>
+                <strong>Date :</strong> <?= htmlspecialchars($rdv->getDate()) ?><br>
+                <strong>Heure :</strong> <?= htmlspecialchars($rdv->getHeure()->format('H:i')) ?><br>
+                <strong>Motif :</strong> <?= htmlspecialchars($rdv->nomService) ?><br>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 <?php else: ?>
-    <p>Utilisateur non trouvé.</p>
+    <p>Aucun rendez-vous à afficher.</p>
 <?php endif; ?>
-
-<a href="index.php?action=deconnexion">Se déconnecter</a>
-

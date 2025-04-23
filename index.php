@@ -1,6 +1,5 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+
 include_once 'incluse.php';
 
 
@@ -9,23 +8,43 @@ $action = $_REQUEST['action'] ?? 'accueil';
 try {
     $controller = new Controller();
     $controllerUtilisateur = new ControllerUtilisateur();
+    $controllerProfil = new ControllerProfil();
+    $controllerAdmin = new ControllerAdmin();
+    $controllerRendezVous = new ControllerRendezVous();
 
     switch ($action) {
         case 'accueil':
-            $controller -> showAccueil();          
+            $controller->showAccueil();          
             break;
 
         case 'prendrerendezvous':
             $controller->showPrendreRendezVous();
             break;
+        case 'validerrdv':
+            $controllerRendezVous->prendreRendezVous();
+            break;
+        case 'confirmationrdv':
+            $controllerRendezVous->showConfirmationRendezVous();
+            break;
+        case 'listerendezvous':
+            $controllerRendezVous->listerRendezVous();
+            break;
+
+        case 'modifierrendezvous':
+            $controllerRendezVous->modifierRendezVous();
+            break;
+        
+            case 'supprimerRendezVous':
+                $controllerRendezVous->supprimerRendezVous();
+                break;
     
     
         case 'listeservices':        
-            $controller -> showListeServices();
+            $controller->showListeServices();
             break;
     
         case 'detailservices':
-            $controller -> showDetailService();
+            $controller->showDetailService();
             break;
 
         case 'actualites':
@@ -50,13 +69,25 @@ try {
                 break;
 
             case 'deconnexion':                    
-                $controllerUtilisateur->deconnexion();
+                $controllerProfil->deconnexion();
                  break;
                 
         case 'profil':
-            $controllerUtilisateur -> showProfil();
+            $controllerProfil -> showProfil();
             break;
-    
+
+        case 'profiladmin':
+            $controllerProfil -> showProfilAdmin();
+            break;
+
+        case 'modifieradmin':
+            $controllerAdmin-> modifierRoleUtilisateur();
+            break;
+
+        case 'listeutilisateurs':
+            $controllerAdmin -> showListeUtilisateurs();
+            break;
+
         default:
             echo('<h1>Erreur 404</h1>');
             break;

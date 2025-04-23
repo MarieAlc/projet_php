@@ -1,15 +1,14 @@
 <?php
 
   echo("<h1>Actualités</h1>");
-  setlocale(LC_TIME, 'fr_FR.UTF-8');  // Spécifie la locale française
+  setlocale(LC_TIME, 'fr_FR.UTF-8'); 
   
   foreach ($listeActualites as $actualite) {
       $actualiteTitre = $actualite->getTitre();
       $actualiteContenu = $actualite->getContenu();
-      $actualiteDate = $actualite->getDate();  // Suppose que c'est un objet DateTime
+      $actualiteDate = $actualite->getDate();  
   
-      // Utilise la méthode format de DateTime pour formater la date
-      $actualiteDateFormatee = $actualiteDate->format('d F Y');  // Format jour mois année
+      $actualiteDateFormatee = $actualiteDate->format('d m Y'); 
   
       echo "<h3>$actualiteTitre</h3>";
       echo "<p>$actualiteContenu</p>";

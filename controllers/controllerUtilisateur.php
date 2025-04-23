@@ -64,8 +64,11 @@ class ControllerUtilisateur {
     }
 
     public function showConnexion(){
-        if (isset($_SESSION['user'])) {
+        if (isset($_SESSION['user']) && $_SESSION['user']['isAdmin'] != 1) {
             header('Location: /test/projet_php/index.php?action=profil');
+            exit;
+        }else if (isset($_SESSION['user'])&& $_SESSION['user']['isAdmin'] == 1) {
+            header('Location: /test/projet_php/index.php?action=profilAdmin');
             exit;
         }
     
@@ -92,36 +95,22 @@ class ControllerUtilisateur {
             if ($utilisateur && password_verify($motDePasse, $utilisateur['motDePasse'])) {
                 $_SESSION['user'] = $utilisateur;
                 $_SESSION['message'] = "Vous êtes connecté ! Bienvenue sur votre profil.";
-                header('Location: /test/projet_php/index.php?action=profil');
+         
+                if ($utilisateur['isAdmin'] === 1) {
+                    header('Location: /test/projet_php/index.php?action=profiladmin');
+                } else {
+                    header('Location: /test/projet_php/index.php?action=profil');
+                }
                 exit;
             } else {
                 $_SESSION['errors'] = ["Email ou mot de passe incorrect."];
                 header('Location: /test/projet_php/index.php?action=connexion');
                 exit;
             }
-        } else {
-            header('Location: /test/projet_php/index.php?action=connexion');
-            exit;
         }
+            
     }
-    public function showProfil(){ 
-
-        if (!isset($_SESSION['user'])) {
-            header('Location: /test/projet_php/index.php?action=connexion');
-            exit;
-        }
-        $user = $_SESSION['user'];
-
-        $views = new Views();
-        $views->render('profil', ['user' => $user]);
-    }
-    public function deconnexion(){
-
-        session_destroy();
-        header('Location: /test/projet_php/index.php?action=accueil');
-        exit;
-    }
-
-
+   
+   
 }
     
