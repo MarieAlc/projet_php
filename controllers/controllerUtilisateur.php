@@ -1,7 +1,7 @@
 <?php
 include_once 'init.php';
 
-class ControllerUtilisateur {
+class ControllerUtilisateur extends Controller{
 
     public function showInscription(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -93,7 +93,14 @@ class ControllerUtilisateur {
             $utilisateur = $utilisateurManager->getUtilisateurByEmail($mail);
     
             if ($utilisateur && password_verify($motDePasse, $utilisateur['motDePasse'])) {
-                $_SESSION['user'] = $utilisateur;
+                $_SESSION['user'] = [
+                    'id' => $utilisateur['id'],
+                    'nom' => $utilisateur['nom'],
+                    'prenom' => $utilisateur['prenom'],
+                    'mail' => $utilisateur['mail'],
+                    'telephone' => $utilisateur['telephone'],
+                    'isAdmin' => $utilisateur['isAdmin']
+                ];
                 $_SESSION['message'] = "Vous êtes connecté ! Bienvenue sur votre profil.";
          
                 if ($utilisateur['isAdmin'] === 1) {
@@ -110,7 +117,99 @@ class ControllerUtilisateur {
         }
             
     }
-   
-   
-}
+
+    public function afficherRendezVousUtilisateur() {
+        if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
+            $userId = $_SESSION['user']['id'];
     
+        
+            $rendezvousManager = new RendezVousManager();
+            $rendezvousList = $rendezvousManager->getRendezVousParUtilisateur($userId);
+    
+    
+            $views = new Views();
+            $views->render('rendezvousutilisateur', [
+                'rendezvousList' => $rendezvousList
+            ]);
+        } else {
+            // Si l'utilisateur n'est pas connecté, redirection vers la page de connexion
+            header('Location: /test/projet_php/index.php?action=connexion');
+            exit;
+        }
+    }
+
+
+    public function modifierRendezVousUtilisateur() {
+        if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
+            $userId = $_SESSION['user']['id'];
+            $rdvId = $_GET['id'];
+    
+    
+            $rendezvousManager = new RendezVousManager();
+            $rdv = $rendezvousManager->getRendezVousParId($rdvId);
+    
+            if ($rdv && $rdv->getIdClient() === $userId) {
+                
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $date = $_POST['date'];
+                    $heure = $_POST['heure'];
+                    $motif = $_POST['motif'];
+                    $mailPatient = $_POST['mailPatient'];
+    
+                    
+                    $rendezvousManager->modifierRendezVous($rdvId, $date, $heure, $motif, $mailPatient);
+    
+                    $_SESSION['message'] = "Rendez-vous modifié avec succès.";
+                    header('Location: /test/projet_php/index.php?action=afficherRendezVousUtilisateur');
+                    exit;
+                }
+    
+                $serviceManager = new ServiceManager();
+                $services = $serviceManager->getAllServices();
+    
+                $views = new Views();
+                $views->render('modifierrendezvousutilisateur', [
+                    'rdv' => $rdv,
+                    'services' => $services
+                ]);
+            } else {
+                
+                $_SESSION['errors'] = ["Rendez-vous introuvable ou non autorisé."];
+                header('Location: /test/projet_php/index.php?action=afficherRendezVousUtilisateur');
+                exit;
+            }
+        } else {
+            
+            header('Location: /test/projet_php/index.php?action=connexion');
+            exit;
+        }
+    }
+    public function supprimerRendezVousUtilisateur() {
+        if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
+            $userId = $_SESSION['user']['id'];
+            $rdvId = $_GET['id'];
+    
+            // Vérifier que le rendez-vous appartient bien à l'utilisateur
+            $rendezvousManager = new RendezVousManager();
+            $rdv = $rendezvousManager->getRendezVousParId($rdvId);
+    
+            if ($rdv && $rdv->getIdClient() === $userId) {
+                // Supprimer le rendez-vous
+                $rendezvousManager->supprimerRendezVous($rdvId);
+    
+                $_SESSION['message'] = "Rendez-vous supprimé avec succès.";
+            } else {
+                $_SESSION['errors'] = ["Rendez-vous introuvable ou non autorisé."];
+            }
+    
+            //header('Location: /test/projet_php/index.php?action=afficherRendezVousUtilisateur');
+            exit;
+        } else {
+            header('Location: /test/projet_php/index.php?action=connexion');
+            exit;
+        }
+    }
+    
+   
+    
+}

@@ -36,7 +36,7 @@
 </header>
 <body>
 
-    <h1>Bienvenue sur le site du DR.Dupont</h1>
+    <h1 style="text-align: center">Bienvenue sur le site du DR.Dupont</h1>
     <main>
         <?= $content ?>
     </main>

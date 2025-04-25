@@ -65,13 +65,61 @@ class RendezVousManager extends AbstractEntityManager {
         $statement = $this->db->prepare($sql);
         $statement->execute(['id' => $id]);
     
-        $rendezvous = $statement->fetch();
+        $row = $statement->fetch();
     
-        if ($rendezvous) {
-            return new RendezVous($rendezvous); 
+        if ($row) {
+            $serviceManager = new ServiceManager();
+            $service = $serviceManager->getService($row['motif']); 
+            $motifNom = $service ? $service->getNom() : ''; 
+    
+            $rendezvous = new RendezVous();
+            $rendezvous->setId($row['id']);
+            $rendezvous->setDate($row['date']);
+            $rendezvous->setHeure(new DateTime($row['heure']));
+            $rendezvous->setMotif($row['motif']);
+            $rendezvous->setMotifNom($motifNom); 
+            $rendezvous->setIdClient($row['idClient']);
+            $rendezvous->setMailPatient($row['mailPatient']);
+    
+            return $rendezvous;
         }
-        return null; 
-    }
     
+        return null;
+    
+    
+    }
+    public function getRendezVousParUtilisateur($idClient) {
+        $query = "SELECT * FROM rendezvous WHERE idClient = :clientId";
+        $statement = $this->db->prepare($query);
+        $statement->bindParam(':clientId', $idClient, PDO::PARAM_INT);
+        $statement->execute();
+    
+
+        $rdvs = [];
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $rdv = new RendezVous();
+            $rdv->setId($row['id']);
+            $rdv->setDate($row['date']);
+            $rdv->setHeure(new DateTime($row['heure']));
+            $rdv->setMotif($row['motif']);
+            $rdv->setMailPatient($row['mailPatient']);
+
+            $serviceManager = new ServiceManager();
+            $service = $serviceManager->getService($row['motif']);
+    
+           
+            if ($service) {
+                $motifNom = $service->getNom();
+            } else {
+                $motifNom = 'Service non défini'; 
+            }
+    
+            
+            $rdv->setMotifNom($motifNom);
+    
+            $rdvs[] = $rdv;
+        }
+        return $rdvs;
+    }
 
 }

@@ -8,7 +8,7 @@ class Utilisateur {
     private string $nom;
     private string $prenom;
     private int $telephone;
-    private string $isAdmin;
+    private bool $isAdmin;
 
     public function __construct(array $data) {
         $this->id = $data['id'] ?? 0;
@@ -16,7 +16,7 @@ class Utilisateur {
         $this->prenom = $data['prenom'] ?? '';
         $this->mail = $data['mail'] ?? '';
         $this->motDePasse = $data['motDePasse'] ?? '';
-        $this->telephone = $data['telephone'] ?? '';
+        $this->telephone = $data['telephone'] ?? null;
         $this->isAdmin = $data['isAdmin'] ?? 0;
     }
 
@@ -61,11 +61,11 @@ class Utilisateur {
         return $this->motDePasse;
     }
 
-    public function setIsAdmin(string $isAdmin): void {
-        $this->role = $isAdmin;
+    public function setIsAdmin(bool $isAdmin): void {
+        $this->isAdmin  = $isAdmin;
     }
 
-    public function getIsAdmin(): string {
+    public function getIsAdmin(): bool {
         return $this->isAdmin;
     }
 }

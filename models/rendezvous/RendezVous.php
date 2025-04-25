@@ -9,6 +9,8 @@ class RendezVous extends AbstractEntity{
     private string $motifNom;
     private int $idClient;
     private string $mailPatient;
+
+    
     
     public function setId (int $id): void{
         $this->id = $id;

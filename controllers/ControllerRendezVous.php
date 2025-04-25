@@ -64,7 +64,7 @@ class ControllerRendezVous extends Controller {
         }
     
         $views = new Views();
-        $views->render('rendezvousutilisateur', ['confirmation' => $confirmation]);
+        $views->render('confirmationrendezvousutilisateur', ['confirmation' => $confirmation]);
     
         unset($_SESSION['confirmation_rdv']); // on efface après affichage
     }

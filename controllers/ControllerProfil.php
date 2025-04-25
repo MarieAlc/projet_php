@@ -28,15 +28,26 @@ class ControllerProfil extends Controller {
 
         $rendezVousManager = new RendezVousManager();
         $serviceManager = new ServiceManager();
+        $utilisateurManager = new UtilisateurManager();
+
         $rendezvousList = $rendezVousManager->getListeRendezVous();
+        $utilisateurs = $utilisateurManager->listeUtilisateurs();
 
         foreach ($rendezvousList as $rdv) {
             $service = $serviceManager->getService($rdv->getMotif());
             $rdv->nomService = $service ? $service->getNom() : 'Inconnu';
         }
+        $patients = array_filter($utilisateurs, function($utilisateur) {
+            return $utilisateur->getIsAdmin() === false;
+        });
+        $nombrePatients = count($patients);
 
         $views = new Views();
-        $views->render('profiladmin', ['user' => $user, 'rendezvousList' => $rendezvousList]);
+        $views->render('profiladmin', [
+            'user' => $user,
+            'rendezvousList' => $rendezvousList,
+            'nombrePatients' => $nombrePatients
+        ]);
     }
     
     public function deconnexion(){

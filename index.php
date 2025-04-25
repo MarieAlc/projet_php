@@ -29,14 +29,16 @@ try {
         case 'listerendezvous':
             $controllerRendezVous->listerRendezVous();
             break;
+        
+
 
         case 'modifierrendezvous':
             $controllerRendezVous->modifierRendezVous();
             break;
         
-            case 'supprimerRendezVous':
-                $controllerRendezVous->supprimerRendezVous();
-                break;
+        case 'supprimerRendezVous':
+            $controllerRendezVous->supprimerRendezVous();
+            break;
     
     
         case 'listeservices':        
@@ -64,13 +66,13 @@ try {
             $controllerUtilisateur -> showConnexion();
     
             break;    
-            case 'verifConnexion':
-                $controllerUtilisateur->verifConnexion();
-                break;
+        case 'verifConnexion':
+            $controllerUtilisateur->verifConnexion();
+            break;
 
-            case 'deconnexion':                    
-                $controllerProfil->deconnexion();
-                 break;
+        case 'deconnexion':                    
+            $controllerProfil->deconnexion();
+            break;
                 
         case 'profil':
             $controllerProfil -> showProfil();
@@ -87,6 +89,12 @@ try {
         case 'listeutilisateurs':
             $controllerAdmin -> showListeUtilisateurs();
             break;
+        
+        case 'listerendezvousutilisateur':
+            $controllerUtilisateur -> afficherRendezVousUtilisateur();
+            break;
+
+
 
         default:
             echo('<h1>Erreur 404</h1>');

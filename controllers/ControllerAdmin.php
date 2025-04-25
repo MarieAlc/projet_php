@@ -56,6 +56,11 @@ class ControllerAdmin extends Controller {
         $views->render('listerendezvous', ['rendezvous' => $rendezvous]);
     }
 
+        
+    
+
+
+
    
 }
 
