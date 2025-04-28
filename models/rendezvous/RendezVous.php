@@ -9,9 +9,15 @@ class RendezVous extends AbstractEntity{
     private string $motifNom;
     private int $idClient;
     private string $mailPatient;
+    private bool $statut;
 
     
-    
+    public function setStatut (bool $statut): void{
+        $this->statut = $statut;
+    }
+    public function getStatut (): bool {
+        return $this->statut;
+    }
     public function setId (int $id): void{
         $this->id = $id;
     }

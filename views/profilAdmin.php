@@ -26,16 +26,24 @@ if (!empty($_SESSION['message'])): ?>
 $rendezvousTotal = isset($rendezvousList) ? count($rendezvousList) : 0;
 ?>
 
+<h3 style="color: #34495e;text-align:center;">Résumé :</h3>
 <div style="max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
-    <h3 style="color: #34495e;">Résumé :</h3>
     <p><strong>Nombre total de patients :</strong> <?= $nombrePatients ?></p>
     <p><strong>Nombre total de rendez-vous :</strong> <?= $rendezvousTotal ?></p>
 </div>
 
-<div style = " display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
-    <p><a href="index.php?action=listeutilisateurs">Liste des utilisateurs</a></p>
-    <p><a href="index.php?action=listerendezvous">Liste des rendez-vous</a></p>
-    <p><a href="index.php?action=deconnexion">Se déconnecter</a></p>
+<h3 style="color: #34495e;text-align:center;">Actions disponibles :</h3>
+<div style = " display: flex; justify-content: space-around; align-items: center; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+    <div>
+        <p><a href="index.php?action=listeutilisateurs">Liste des utilisateurs</a></p>
+        <p><a href="index.php?action=listerendezvous">Liste des rendez-vous</a></p>
+        <p><a href="index.php?action=modifierhoraire">Modifier les horaires</a></p>
+    </div>
+    <div>
+        <p><a href="index.php?action=actualiteadmin">Modifier vos actualités</a></p>
+        <p><a href="index.php?action=modifierservice">Modifier vos services</a></p>
+        <p><a href="index.php?action=deconnexion">Se déconnecter</a></p>
+    </div>
 
 </div>
 

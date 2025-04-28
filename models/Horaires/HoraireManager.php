@@ -17,4 +17,19 @@ class HoraireManager extends AbstractEntityManager {
         return $horaires;
     }
 
+    public function modifierHoraire($horaire) {
+       
+        $heure_debut = $horaire->getHeure_debut()->format('Y-m-d H:i:s');
+        $heure_fin = $horaire->getHeure_fin()->format('Y-m-d H:i:s');
+    
+        $sql = "UPDATE horaire SET heure_debut = :heure_debut, heure_fin = :heure_fin WHERE id = :id"; 
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':id', $horaire->getId()); 
+        $statement->bindValue(':heure_debut', $heure_debut);
+        $statement->bindValue(':heure_fin', $heure_fin);
+        
+        return $statement->execute();
+    }
+    
+
 }

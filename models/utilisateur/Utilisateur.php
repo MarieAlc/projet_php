@@ -1,6 +1,6 @@
 <?php
 
-class Utilisateur {
+class Utilisateur extends AbstractEntity {
 
     private int $id;
     private string $email;

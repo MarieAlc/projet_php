@@ -1,6 +1,7 @@
 <?php
 
 class Controller {
+    protected $db;
 
     protected function verifierAdmin() {
         if (!isset($_SESSION['user']) || $_SESSION['user']['isAdmin'] != 1) {
@@ -15,7 +16,7 @@ class Controller {
         }
     }
 
-    function showAccueil(){
+    public function showAccueil(){
         $views = new Views();
 
         $servicesManager = new ServiceManager();  
@@ -40,14 +41,14 @@ class Controller {
     }
 
 
-    function showPrendreRendezVous(){
+    public function showPrendreRendezVous(){
         $views = new Views();
         $serviceManager = new ServiceManager();
         $services = $serviceManager->getListeServices();
         $views -> render("prendrerendezvous", ['services'=>$services]);
     }
         
-    function showListeServices(){
+    public function showListeServices(){
         $serviceManager = new serviceManager();
         $listeServices = $serviceManager -> getListeServices();
 
@@ -59,7 +60,7 @@ class Controller {
 
     }
 
-    function showDetailService(){
+    public function showDetailService(){
         $serviceManager = new serviceManager();
         $id = $_REQUEST['id'] ?? -1;
         $service= $serviceManager -> getService($id);
@@ -70,7 +71,7 @@ class Controller {
         ]);
     }
 
-    function showListeActualites(){
+    public function showListeActualites(){
         $actualitesManager = new ActualitesManager();
         $listeActualites = $actualitesManager -> getListeActualites();
 
@@ -80,7 +81,7 @@ class Controller {
         ]);
     }
 
-    function showApropos(){
+    public function showApropos(){
         $aproposManager = new AproposManager();
         $apropos = $aproposManager -> listeApropos();
 
@@ -89,6 +90,7 @@ class Controller {
             'apropos' => $apropos
         ]);
     }
+   
 
  
 }

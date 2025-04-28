@@ -20,7 +20,6 @@ class UtilisateurManager extends AbstractEntityManager {
             throw new Exception("Rôle invalide.");
         }
     
-        // Mettre à jour le rôle dans la base de données
         $sql = "UPDATE utilisateur SET isAdmin = :isAdmin WHERE id = :id";
         $statement = $this->db->prepare($sql);
         $statement->execute([
@@ -68,5 +67,22 @@ class UtilisateurManager extends AbstractEntityManager {
         }
 
         return ['success' => 'Utilisateur ajouté avec succès.'];
+    }
+
+    public function modifierUtilisateur($id, $nom, $prenom, $mail, $telephone) {
+        $sql = "UPDATE utilisateur SET nom = :nom, prenom = :prenom, mail = :mail, telephone = :telephone WHERE id = :id";
+        $statement = $this->db->prepare($sql);
+        $statement->execute([
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'mail' => $mail,
+            'telephone' => $telephone,
+            'id' => $id
+        ]);
+    }
+    public function supprimerUtilisateur($id) {
+        $sql = "DELETE FROM utilisateur WHERE id = :id";
+        $statement = $this->db->prepare($sql);
+        $statement->execute(['id' => $id]);
     }
 }

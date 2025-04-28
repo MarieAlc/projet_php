@@ -2,7 +2,7 @@
 
 include_once 'models/abstractEntity.php';
 
-class Presentation {
+class Presentation extends AbstractEntity {
     private $id;
     private $texte;
 

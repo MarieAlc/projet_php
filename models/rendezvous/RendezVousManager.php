@@ -121,5 +121,12 @@ class RendezVousManager extends AbstractEntityManager {
         }
         return $rdvs;
     }
+    public function updateStatutRendezvous($id_rdv, $statut) {
+        $sql = "UPDATE rendezvous SET statut = :statut WHERE id = :id_rdv";
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':id_rdv', $id_rdv);
+        $statement->bindValue(':statut', $statut);
+        return $statement->execute();
+    }
 
 }

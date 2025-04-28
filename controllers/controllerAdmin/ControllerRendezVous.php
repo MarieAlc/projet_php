@@ -80,11 +80,21 @@ class ControllerRendezVous extends Controller {
             $service = $serviceManager->getService($rdv->getMotif()); 
             $rdv->setMotifNom($service ? $service->getNom() : 'Inconnu');
         }
+        $nonConfirmes = array_filter($rendezvousList, function($rdv) {
+            return $rdv->getStatut() == 0; 
+        });
+    
+        $confirmes = array_filter($rendezvousList, function($rdv) {
+            return $rdv->getStatut() == 1; // Statut 1 pour confirmé
+        });
 
 
         // Passe la liste des rendez-vous à la vue
         $views = new Views();
-        $views->render('listerendezvous', ['rendezvousList' => $rendezvousList]);
+        $views->render('listerendezvous', [
+            'rendezvousnonConfirmes' => $nonConfirmes,
+            'rendezvousconfirmes' => $confirmes
+        ]);
     }
     public function supprimerRendezVous() {
         $this->verifierAdmin();
@@ -138,7 +148,56 @@ class ControllerRendezVous extends Controller {
             exit;
         }
     }
+    public function validerRendezvous() {
+        $id=$_GET['id'] ?? null; 
+        if (empty($id) || !is_numeric($id)) {
+            $_SESSION['message'] = "L'ID du rendez-vous est invalide.";
+            header('Location: index.php?action=listerendezvous');
+            exit;
+        }
+        $rendezvousManager = new RendezvousManager($this->db);
+        $rendezvous = $rendezvousManager->getRendezVousParId($id);
+
+        if (!$rendezvous) {
+            $_SESSION['message'] = "Rendez-vous introuvable.";
+            header('Location: index.php?action=listerendezvous');
+            exit;
+        }
+        $updateSuccess = $rendezvousManager->updateStatutRendezvous($id, 1); // 1 pour "validé"
+    
+        if ($updateSuccess) {
+            $this->envoyerEmailConfirmation($rendezvous);
+
+            $_SESSION['message'] = "Le rendez-vous a été confirmé avec succès!";
+        } else {
+
+            $_SESSION['message'] = "Échec de la confirmation du rendez-vous.";
+        }
+
+        header('Location: index.php?action=listerendezvous');
+        exit;
+    }
+    
+    private function envoyerEmailConfirmation($rendezvous) {
+        // Récupérer l'email du patient et les informations du rendez-vous
+        $email_patient = $rendezvous->getMailPatient();
+        $date_rdv = $rendezvous->getDate();
+        $heure_rdv = $rendezvous->getHeure()->format('H:i');
+        $services = $rendezvous->getMotifNom();
+    
+        $subject = "Confirmation de votre rendez-vous chez Dr. Dupont";
+        $message = "Bonjour,\n\nVotre rendez-vous a été confirmé.\n\nRésumé de votre rendez-vous :\n";
+        $message .= "Date : " . $date_rdv . "\n";
+        $message .= "Heure : " . $heure_rdv . "\n";
+        $message .= "Service : " . $services . "\n\nMerci de votre confiance.\n\nCordialement,\nL'équipe Dr. Dupont";
+        $headers = "From: dupont@dupont.fr";
+    
+        // Envoyer l'email
+        mail($email_patient, $subject, $message, $headers);
+    }
+}
+
+    
     
 
 
-} 

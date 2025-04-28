@@ -29,4 +29,30 @@ class ActualitesManager extends AbstractEntityManager {
 
     
     }
+
+    public function modifierActualite($id, $titre, $contenu) {
+        $statement = $this->db->prepare("UPDATE actualites SET titre = :titre, contenu = :contenu WHERE id = :id");
+        $statement->execute([
+            'id' => $id,
+            'titre' => $titre,
+            'contenu' => $contenu
+        ]);
+    }
+
+    public function supprimerActualite($id) {
+        $statement = $this->db->prepare("DELETE FROM actualites WHERE id = :id");
+        $statement->execute([
+            'id' => $id
+        ]);
+    }
+
+    public function ajouterActualite($titre, $contenu) {
+        $statement = $this->db->prepare("INSERT INTO actualites (titre, contenu, date) VALUES (:titre, :contenu, NOW())");
+        $statement->execute([
+            'titre' => $titre,
+            'contenu' => $contenu
+        ]);
+    }
+
+
 }

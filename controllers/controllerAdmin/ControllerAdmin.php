@@ -11,7 +11,7 @@ class ControllerAdmin extends Controller {
         $views = new Views();
         $views->render('listeutilisateurs', ['utilisateurs' => $utilisateurs]);
     }
-    
+
     public function modifierRoleUtilisateur() {
         $this->verifierAdmin();
         // Si la requête est en POST, on met à jour le rôle de l'utilisateur
