@@ -45,7 +45,7 @@ class Controller {
         $views = new Views();
         $serviceManager = new ServiceManager();
         $services = $serviceManager->getListeServices();
-        $views -> render("prendrerendezvous", ['services'=>$services]);
+        $views -> render("utilisateur/prendrerendezvous", ['services'=>$services]);
     }
         
     public function showListeServices(){

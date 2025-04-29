@@ -27,6 +27,8 @@ class UtilisateurManager extends AbstractEntityManager {
             'id' => $userId
         ]);
     }
+
+
     public function isEmailUnique($mail) {
         $sql = "SELECT COUNT(*) FROM utilisateur WHERE mail = :mail";
         $statement = $this->db->prepare($sql);
@@ -43,15 +45,23 @@ class UtilisateurManager extends AbstractEntityManager {
         return $statement->fetch(PDO::FETCH_ASSOC); 
     }
 
-    public function ajouterUtilisateur($nom, $prenom, $mail, $motDePasseHash, $telephone) {
+    public function getUtilisateurById($id) {
+        $sql = "SELECT * FROM utilisateur WHERE id = :id";
+        $statement = $this->db->prepare($sql);
+        $statement->execute(['id' => $id]);
+    
+        $data = $statement->fetch(PDO::FETCH_ASSOC);
+        return new Utilisateur($data);
+    }
+
+    public function ajouterUtilisateur($nom, $prenom, $mail, $motDePasseHash, $telephone, $role) {
         try {
-            // Vérifier si l'email est déjà utilisé
             if (!$this->isEmailUnique($mail)) {
                 throw new Exception('L\'email est déjà utilisé.');
             }
     
         $sql = "INSERT INTO utilisateur (nom, prenom, mail, motDePasse, telephone, isAdmin)
-                VALUES (:nom, :prenom, :mail, :motDePasse, :telephone, 0)";
+                VALUES (:nom, :prenom, :mail, :motDePasse, :telephone, :isAdmin)";
         
         $statement = $this->db->prepare($sql);
         $statement->execute([
@@ -59,10 +69,10 @@ class UtilisateurManager extends AbstractEntityManager {
             'prenom' => $prenom,
             'mail' => $mail,
             'motDePasse' => $motDePasseHash,
-            'telephone' => $telephone
+            'telephone' => $telephone,
+            'isAdmin' => $role
         ]);
         } catch (Exception $e) {
-            // Retourne l'erreur si l'email est déjà pris ou autre problème
             return ['error' => $e->getMessage()];
         }
 
@@ -84,5 +94,27 @@ class UtilisateurManager extends AbstractEntityManager {
         $sql = "DELETE FROM utilisateur WHERE id = :id";
         $statement = $this->db->prepare($sql);
         $statement->execute(['id' => $id]);
+        return $statement->fetchColumn() == 0;
     }
+
+    public function peutSupprimerUtilisateur($id) {
+        // Vérifier si l'utilisateur a des rendez-vous associés
+        $sql = "SELECT COUNT(*) FROM rendezvous WHERE idClient = :idClient";
+        $statement = $this->db->prepare($sql);
+        $statement->execute(['idClient' => $id]);
+        
+        $result = $statement->fetchColumn();
+        
+      
+        if ($result > 0) {
+            return false;
+        }
+    
+        return true; 
+    }
+
+
+
+
+
 }

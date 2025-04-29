@@ -19,7 +19,7 @@ class ControllerProfil extends Controller {
         }
 
         $views = new Views();
-        $views->render('profil', ['user' => $user,'rendezvousList' => $rendezvousList]);
+        $views->render('utilisateur/profil', ['user' => $user,'rendezvousList' => $rendezvousList]);
     }
 
     public function showProfilAdmin(){ 
@@ -43,7 +43,7 @@ class ControllerProfil extends Controller {
         $nombrePatients = count($patients);
 
         $views = new Views();
-        $views->render('profiladmin', [
+        $views->render('admin/profiladmin', [
             'user' => $user,
             'rendezvousList' => $rendezvousList,
             'nombrePatients' => $nombrePatients

@@ -14,14 +14,14 @@
                 <li><a href="index.php?action=accueil">Accueil</a></li>
                 <li><a href="index.php?action=listeservices">Services</a></li>
                 <li><a href="index.php?action=actualites">Actualitées</a></li>
-                <li><a href="index.php?action=prendrerendezvous">Rendez-Vous</a></li>
                 <li><a href="index.php?action=apropos">A propos</a></li>
-
+                
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['isAdmin'] == 1): ?>
                     <li><a href="index.php?action=profiladmin">Profil Admin</a></li>
                     <li><a href="index.php?action=deconnexion">Déconnexion</a></li>
-
-                <?php elseif (isset($_SESSION['user'])): ?>
+                    
+                    <?php elseif (isset($_SESSION['user'])): ?>
+                        <li><a href="index.php?action=prendrerendezvous">Rendez-Vous</a></li>
                     <li><a href="index.php?action=profil">Profil</a></li>
                     <li><a href="index.php?action=deconnexion">Déconnexion</a></li>
 

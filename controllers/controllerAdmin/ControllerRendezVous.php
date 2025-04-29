@@ -1,7 +1,6 @@
 <?php   
 
 class ControllerRendezVous extends Controller {
-
     public function prendreRendezVous() {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -53,6 +52,8 @@ class ControllerRendezVous extends Controller {
         }
     
     }
+
+
     public function showConfirmationRendezVous() {
         $this->verifierConnexion();
         $confirmation = $_SESSION['confirmation_rdv'] ?? null;
@@ -64,7 +65,7 @@ class ControllerRendezVous extends Controller {
         }
     
         $views = new Views();
-        $views->render('confirmationrendezvousutilisateur', ['confirmation' => $confirmation]);
+        $views->render('utilisateur/confirmationrendezvousutilisateur', ['confirmation' => $confirmation]);
     
         unset($_SESSION['confirmation_rdv']); // on efface après affichage
     }
@@ -91,7 +92,7 @@ class ControllerRendezVous extends Controller {
 
         // Passe la liste des rendez-vous à la vue
         $views = new Views();
-        $views->render('listerendezvous', [
+        $views->render('admin/listerendezvous', [
             'rendezvousnonConfirmes' => $nonConfirmes,
             'rendezvousconfirmes' => $confirmes
         ]);
@@ -141,7 +142,7 @@ class ControllerRendezVous extends Controller {
     
             // Affichage du formulaire de modification
             $views = new Views();
-            $views->render('modifierRendezVous', ['rdv' => $rdv, 'services' => $services]);
+            $views->render('admin/modifierRendezVous', ['rdv' => $rdv, 'services' => $services]);
         } else {
             // Rediriger si l'id est manquant
             header('Location: /test/projet_php/index.php?action=listerendezvous');
@@ -190,7 +191,7 @@ class ControllerRendezVous extends Controller {
         $message .= "Date : " . $date_rdv . "\n";
         $message .= "Heure : " . $heure_rdv . "\n";
         $message .= "Service : " . $services . "\n\nMerci de votre confiance.\n\nCordialement,\nL'équipe Dr. Dupont";
-        $headers = "From: dupont@dupont.fr";
+        $headers = "From: \"Cabinet Dr. Dupont\" <alcantara.marie@outlook.fr>";
     
         // Envoyer l'email
         mail($email_patient, $subject, $message, $headers);

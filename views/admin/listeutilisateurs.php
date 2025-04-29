@@ -18,6 +18,7 @@
             <th>Nom</th>
             <th>Prénom</th>
             <th>Email</th>
+            <th>Téléphone</th>
             <th>Rôle</th>
             <th>Action</th>
         </tr>
@@ -28,6 +29,7 @@
                 <td><?= htmlspecialchars($utilisateur->getNom()) ?></td>
                 <td><?= htmlspecialchars($utilisateur->getPrenom()) ?></td>
                 <td><?= htmlspecialchars($utilisateur->getMail()) ?></td>
+                <td><?= htmlspecialchars($utilisateur->getTelephone())?></td>
                 <td><?= $utilisateur->getIsAdmin() == 1 ? 'Administrateur' : 'Utilisateur' ?></td>
                 <td>
                 <?php if ($utilisateur->getIsAdmin() == 0): ?>
@@ -45,7 +47,7 @@
                     <?php endif; ?>
 
                 
-                    <a href="index.php?action=modifierUtilisateur&id=<?= $utilisateur->getId() ?>">Modifier</a> 
+                    <a href="index.php?action=modifierutilisateur&id=<?= $utilisateur->getId() ?>">Modifier</a> 
 
                    
                     <a href="index.php?action=supprimerUtilisateur&id=<?= $utilisateur->getId() ?>" 
@@ -56,7 +58,7 @@
     </tbody>
 </table>
 <h2>Ajouter un nouvel utilisateur</h2>
-<form action="index.php" method="post">
+<form action="index.php?action=ajouterutilisateur" method="post">
     <label for="nom">Nom :</label>
     <input type="text" name="nom" id="nom" required><br><br>
 
@@ -77,5 +79,5 @@
     <label for="motdepasse">Mot de passe :</label>
     <input type="password" name="motdepasse" id="motdepasse" required><br><br>
 
-    <button type="submit" name="action" value="ajouterUtilisateur">Ajouter</button>
+    <button type="submit" name="action" value="ajouterutilisateur">Ajouter</button>
 </form>

@@ -1,5 +1,6 @@
 <?php
 
+
 include_once 'incluse.php';
 
 
@@ -14,6 +15,7 @@ try {
     $controllerActualite = new ControllerActualite();
     $controllerHoraire = new ControllerHoraire();
     $controllerGestionUtilisateur = new ControllerGestionUtilisateur();
+    $controllerService = new ControllerServices();
 
     switch ($action) {
 
@@ -93,27 +95,37 @@ try {
         case 'listeutilisateurs':
             $controllerAdmin->showListeUtilisateurs();
             break;
-        
+            
+        case 'ajouterutilisateur':
+            $controllerAdmin->ajouterUtilisateur();
+            break;
+
+        case 'modifierutilisateur':
+            $controllerAdmin->modifierUtilisateur();
+            break;
+
+        case 'supprimerUtilisateur':
+            $controllerAdmin->supprimerUtilisateur();
+            break;
+
+        case 'servicesadmin':
+            $controllerService->showServicesAdmin();
+            break;
+        case 'ajouterService':
+            $controllerService->ajouterService();
+            break;
+
+        case 'supprimerService':
+            $controllerService->supprimerService();
+            break;
+
+        case 'modifierservice':
+            $controllerService->modifierService();
+            break;       
+
         case 'listerendezvousutilisateur':
             $controllerGestionUtilisateur->afficherRendezVousUtilisateur();
             break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
 
         case 'actualiteadmin':
             $controllerActualite->showActualitesAdmin();
@@ -147,6 +159,7 @@ try {
             echo('<h1>Erreur 404</h1>');
             break;
     }
+
 
 } catch (\Throwable $th) {
     echo('<h1>Erreur 404</h1>');

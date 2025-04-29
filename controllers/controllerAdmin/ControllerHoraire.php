@@ -28,7 +28,7 @@ class ControllerHoraire extends Controller {
         }
     
                $views = new Views();
-        $views->render('modifierhoraire', ['horaires' => $horaires]);
+        $views->render('admin/modifierhoraire', ['horaires' => $horaires]);
     }
         
     

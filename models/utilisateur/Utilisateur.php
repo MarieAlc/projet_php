@@ -7,7 +7,7 @@ class Utilisateur extends AbstractEntity {
     private string $motDePasse;
     private string $nom;
     private string $prenom;
-    private int $telephone;
+    private string $telephone;
     private bool $isAdmin;
 
     public function __construct(array $data) {
@@ -40,10 +40,10 @@ class Utilisateur extends AbstractEntity {
         return $this->prenom;
     }
 
-    public function setTelephone(int $telephone): void {
+    public function setTelephone(string $telephone): void {
         $this->telephone = $telephone;
     }
-    public function getTelephone(): int {
+    public function getTelephone(): string {
         return $this->telephone;
     }
 

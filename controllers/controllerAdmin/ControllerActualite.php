@@ -8,7 +8,7 @@ class ControllerActualite extends Controller {
             $actualite = $actualiteManager->getActualite($id);
     
             $views = new Views();
-            $views->render("actualiteadmin", [
+            $views->render("admin/actualiteadmin", [
                 'actualite' => $actualite
             ]);
         } else {
@@ -16,7 +16,7 @@ class ControllerActualite extends Controller {
             $listeActualites = $actualiteManager->getListeActualites();
     
             $views = new Views();
-            $views->render("actualiteadmin", [
+            $views->render("admin/actualiteadmin", [
                 'listeActualites' => $listeActualites
             ]);
         }
@@ -45,8 +45,12 @@ class ControllerActualite extends Controller {
           
             $titre = $actualite->getTitre();
             $contenu = $actualite->getContenu();
-    
-            include 'views/actualiteModifier.php'; 
+            $views = new Views();
+            $views->render("admin/actualiteModifier", [
+                'titre' => $titre,
+                'contenu' => $contenu,
+                'id' => $id
+            ]);
         }
     }
 

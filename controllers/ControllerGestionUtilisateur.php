@@ -11,7 +11,7 @@ class ControllerGestionUtilisateur extends Controller {
     
     
             $views = new Views();
-            $views->render('rendezvousutilisateur', [
+            $views->render('utilisateur/rendezvousutilisateur', [
                 'rendezvousList' => $rendezvousList
             ]);
         } else {
@@ -21,17 +21,5 @@ class ControllerGestionUtilisateur extends Controller {
         }
     }
 
-    public function modifierUtilisateur(){
- 
 
-
-    }
-
-    public function supprimerUtilisateur(){
-
-    }
-
-    public function ajouterUtilisateur(){
-
-    }
 }

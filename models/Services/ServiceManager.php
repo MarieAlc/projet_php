@@ -20,11 +20,45 @@ class ServiceManager extends AbstractEntityManager {
             'id' => $id
         ]);
         $service = $statement->fetch();
-        if($service){
-            return new service($service);
-        }
-        return null;
+
+        return $service ? new Service($service) : null;
 
     
+    }
+
+  
+
+    public function ajouterService() {
+        if (empty($_POST['nom']) || empty($_POST['description']) || empty($_POST['prix'])) {
+            throw new Exception('Tous les champs sont obligatoires.');
+        }
+    
+        if (!is_numeric($_POST['prix']) || $_POST['prix'] <= 0) {
+            throw new Exception('Le prix doit être un nombre positif.');
+        }
+    
+        $statement = $this->db->prepare("INSERT INTO service (nom, description, prix) VALUES (:nom, :description, :prix)");
+        $statement->execute([
+            'nom' => $_POST['nom'],
+            'description' => $_POST['description'],
+            'prix' => $_POST['prix']
+        ]);
+    }
+
+    public function supprimerService($id){
+        $statement = $this->db->prepare("DELETE FROM service WHERE id = :id");
+        $statement->execute([
+            'id' => $id
+        ]);
+    }
+    public function modifierService($id, $nom, $description, $prix) {
+        $sql = "UPDATE service SET nom = :nom, description = :description, prix = :prix WHERE id = :id";
+        $statement = $this->db->prepare($sql);
+        $statement->execute([
+            'nom' => $nom,
+            'description' => $description,
+            'prix' => $prix,
+            'id' => $id
+        ]);
     }
 }

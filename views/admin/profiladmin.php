@@ -41,7 +41,7 @@ $rendezvousTotal = isset($rendezvousList) ? count($rendezvousList) : 0;
     </div>
     <div>
         <p><a href="index.php?action=actualiteadmin">Modifier vos actualités</a></p>
-        <p><a href="index.php?action=modifierservice">Modifier vos services</a></p>
+        <p><a href="index.php?action=servicesadmin">Modifier vos services</a></p>
         <p><a href="index.php?action=deconnexion">Se déconnecter</a></p>
     </div>
 
