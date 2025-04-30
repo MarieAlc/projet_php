@@ -1,0 +1,17 @@
+À : antoine@exemple.fr
+Sujet : Confirmation de votre rendez-vous chez Dr. Dupont
+
+Bonjour,
+
+Votre rendez-vous a été confirmé.
+
+Résumé de votre rendez-vous :
+Date : 2025-04-29
+Heure : 11:30
+Service : Pose de couronnes dentaires
+
+Merci de votre confiance.
+
+Cordialement,
+L'équipe Dr. Dupont
+

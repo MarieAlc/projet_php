@@ -29,6 +29,7 @@
                     <li><a href="index.php?action=inscription">Inscription</a></li>
                     <li><a href="index.php?action=connexion">Connexion</a></li>
                 <?php endif; ?>
+                <li><a href="index.php?action=avis">Avis des patients</a></li>
 
          </ul>
         </div>

@@ -1,0 +1,9 @@
+À : alcantara.marie@outlook.fr
+Sujet : Demande de réinitialisation de mot de passe
+
+Un utilisateur a demandé une réinitialisation de mot de passe :
+
+Nom : Marie
+Prénom : Alc
+Email : marie.romain2504.ma@gmail.com
+ID : 22

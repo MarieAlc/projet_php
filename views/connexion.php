@@ -19,5 +19,8 @@ if (!empty($_SESSION['message'])): ?>
     <input type="password" name="motDePasse" required><br>
     
     <input type="submit" value="Se connecter">
+
+    <p><a href="index.php?action=inscription">Crée un compte</a></p><br>
+    <p><a href="index.php?action=motdepasseoublie">Mot de passe oublié </a></p>
 </form>
 

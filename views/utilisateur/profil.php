@@ -24,7 +24,7 @@
     <?php endif; ?>
 </div>
 <div style = " display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
-    <p> <a href="index.php?action=modifierprofilutilisateur">Modifier son profil</a></p>
+<p><a href="index.php?action=modifierprofilutilisateur&id=<?php echo $_SESSION['user']['id']; ?>">Modifier son profil</a></p>
     <p><a href="index.php?action=listerendezvousutilisateur">Modifier ses rendez-vous</a></p>
     <p><a href="index.php?action=deconnexion">Se déconnecter</a></p>
 </div>

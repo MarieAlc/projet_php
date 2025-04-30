@@ -1,3 +1,5 @@
+
+
 <h2 style="text-align: center; color: #2c3e50;">Modifier mon rendez-vous</h2>
 
 
@@ -22,7 +24,7 @@
                 <th>Date</th>
                 <th>Heure</th>
                 <th>Motif</th>
-                <th>Email du patient</th>
+                <th>Email</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -34,7 +36,7 @@
                     <td><?= htmlspecialchars($rdv->getMotifNom()) ?></td>
                     <td><?= htmlspecialchars($rdv->getMailPatient()) ?></td>
                     <td>
-                        <a href="index.php?action=modifierRendezVousUtilisateur&id=<?= $rdv->getId() ?>">Modifier</a> | 
+                        <a href="index.php?action=modifierrendezvousutilisateur&id=<?= $rdv->getId() ?>">Modifier</a> | 
                         <a href="index.php?action=supprimerRendezVousUtilisateur&id=<?= $rdv->getId() ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce rendez-vous ?');">Supprimer</a>
                     </td>
                 </tr>

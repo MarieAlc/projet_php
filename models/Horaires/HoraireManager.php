@@ -21,12 +21,14 @@ class HoraireManager extends AbstractEntityManager {
        
         $heure_debut = $horaire->getHeure_debut()->format('Y-m-d H:i:s');
         $heure_fin = $horaire->getHeure_fin()->format('Y-m-d H:i:s');
+        $ouvert = $horaire->getOuvert() ? 1 : 0;
     
-        $sql = "UPDATE horaire SET heure_debut = :heure_debut, heure_fin = :heure_fin WHERE id = :id"; 
+        $sql = "UPDATE horaire SET heure_debut = :heure_debut, heure_fin = :heure_fin, ouvert = :ouvert WHERE id = :id"; 
         $statement = $this->db->prepare($sql);
         $statement->bindValue(':id', $horaire->getId()); 
         $statement->bindValue(':heure_debut', $heure_debut);
         $statement->bindValue(':heure_fin', $heure_fin);
+        $statement->bindValue(':ouvert', $ouvert, PDO::PARAM_INT);
         
         return $statement->execute();
     }

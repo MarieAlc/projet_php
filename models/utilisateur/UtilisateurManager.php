@@ -112,6 +112,7 @@ class UtilisateurManager extends AbstractEntityManager {
     
         return true; 
     }
+    
 
 
 

@@ -98,7 +98,8 @@ class ControllerProfil extends Controller {
             $utilisateurManager = new UtilisateurManager();
     
             try {
-                $utilisateurManager->ajouterUtilisateur($nom, $prenom, $mail, $motDePasseHash, $telephone);
+                $role = 0; // 0 pour utilisateur normal
+                $utilisateurManager->ajouterUtilisateur($nom, $prenom, $mail, $motDePasseHash, $telephone,$role);
                 $_SESSION['message'] = "Inscription réussie, vous pouvez vous connecter maintenant.";
                 header('Location: /test/projet_php/index.php?action=connexion');
                 exit;
@@ -171,6 +172,56 @@ class ControllerProfil extends Controller {
             
     }
 
+    public function showMotDePasseOublie()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $mail = trim($_POST['mail'] ?? '');
+
+        // Validation du mail
+        if (empty($mail)) {
+            $_SESSION['errors'] = ["Adresse mail requise."];
+            header('Location: /test/projet_php/index.php?action=motdepasseoublie');
+            exit;
+        }
+
+        if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['errors'] = ["Format de l'adresse mail invalide."];
+            header('Location: /test/projet_php/index.php?action=motdepasseoublie');
+            exit;
+        }
+
+        // Vérification dans la base
+        $utilisateurManager = new UtilisateurManager();
+        $utilisateur = $utilisateurManager->getUtilisateurByEmail($mail);
+
+        if ($utilisateur) {
+            // Envoi d’un mail à l’admin
+            $adminMail = 'alcantara.marie@outlook.fr'; // Test avec ton mail
+            $sujet = "Demande de réinitialisation de mot de passe";
+            $message = "Un utilisateur a demandé une réinitialisation de mot de passe :\n\n"
+                     . "Nom : " . $utilisateur['nom'] . "\n"
+                     . "Prénom : " . $utilisateur['prenom'] . "\n"
+                     . "Email : " . $utilisateur['mail'] . "\n"
+                     . "ID : " . $utilisateur['id'] . "\n";
+
+            // Remplacer mail() par file_put_contents pour tester
+            file_put_contents('mail_log.txt', "À : $adminMail\nSujet : $sujet\n\n$message");
+
+            // Ajouter un message de succès si le fichier est généré
+            $_SESSION['message'] = "Votre demande a été envoyée à l'administrateur. Vous recevrez un nouveau mot de passe prochainement.";
+        } else {
+            $_SESSION['errors'] = ["Aucun utilisateur trouvé avec cette adresse mail."];
+        }
+
+        header('Location: /test/projet_php/index.php?action=motdepasseoublie');
+        exit;
+    } else {
+        // Affichage du formulaire
+        $views = new Views();
+        $views->render('motdepasseoublie', []);
+    }
+}
+}
+
    
 
-}

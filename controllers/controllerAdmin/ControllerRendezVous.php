@@ -105,7 +105,6 @@ class ControllerRendezVous extends Controller {
     
             $rendezvousManager = new RendezVousManager();
     
-            // Supprimer le rendez-vous de la base de données
             $rendezvousManager->supprimerRendezVous($id);
             $_SESSION['message'] = "Rendez-vous supprimé avec succès.";
             header('Location: /test/projet_php/index.php?action=listerendezvous');
@@ -193,8 +192,10 @@ class ControllerRendezVous extends Controller {
         $message .= "Service : " . $services . "\n\nMerci de votre confiance.\n\nCordialement,\nL'équipe Dr. Dupont";
         $headers = "From: \"Cabinet Dr. Dupont\" <alcantara.marie@outlook.fr>";
     
-        // Envoyer l'email
-        mail($email_patient, $subject, $message, $headers);
+        $logMessage = "À : $email_patient\nSujet : $subject\n\n$message";
+        file_put_contents('email_log.txt', $logMessage . "\n\n", FILE_APPEND);
+    
+      
     }
 }
 

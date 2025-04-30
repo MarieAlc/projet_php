@@ -13,6 +13,7 @@
             <th>Jour</th>
             <th>Ouverture</th>
             <th>Fermeture</th>
+            <th>Overt / Fermer</th>
         </tr>
         <?php if (!empty($horaires)): ?>
             <?php foreach ($horaires as $horaire): ?>
@@ -23,6 +24,10 @@
                     </td>
                     <td>
                         <input type="time" name="fermeture[<?php echo $horaire->getId(); ?>]" value="<?php echo $horaire->getHeure_fin()->format('H:i'); ?>">
+                    </td>
+                    <td>
+                    <input type="checkbox" name="ferme[<?php echo $horaire->getId(); ?>]" id="ferme_<?php echo $horaire->getId(); ?>" <?php echo !$horaire->getOuvert() ? 'checked' : ''; ?>>
+                    <label for="ferme_<?php echo $horaire->getId(); ?>">Fermé</label>
                     </td>
                 </tr>
             <?php endforeach; ?>

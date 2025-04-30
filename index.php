@@ -16,8 +16,11 @@ try {
     $controllerHoraire = new ControllerHoraire();
     $controllerGestionUtilisateur = new ControllerGestionUtilisateur();
     $controllerService = new ControllerServices();
+    $controllerAvis = new ControllerAvis();
 
     switch ($action) {
+
+        // page front pour tous
 
         case 'accueil':
             $controller->showAccueil();          
@@ -37,7 +40,6 @@ try {
         case 'apropos':
             $controller->showApropos();
             break;
-
             
         case 'inscription':
             $controllerProfil->showInscription();
@@ -54,27 +56,24 @@ try {
         case 'deconnexion':                    
             $controllerProfil->deconnexion();
             break;
-                            
-        case 'profil':
-            $controllerProfil->showProfil();
+        case 'motdepasseoublie':
+            $controllerProfil->showMotDePasseOublie();
             break;
-                                
+        case 'avis':
+            $controllerAvis->afficherAvis();
+            break;
+        case 'formulaireavis':
+            $controllerAvis->afficherFormulaireAvis();
+            break;
+        case 'ajouteravis':
+            $controllerAvis->ajouterAvis();
+            break;
+
+
+//coté admin
         case 'profiladmin':
             $controllerProfil->showProfilAdmin();
             break;
-                                    
-        case 'prendrerendezvous':
-            $controller->showPrendreRendezVous();
-            break;
-
-        case 'validerrdv':
-            $controllerRendezVous->prendreRendezVous();
-            break;
-
-        case 'confirmationrdv':
-            $controllerRendezVous->showConfirmationRendezVous();
-            break;
-
         case 'listerendezvous':
             $controllerRendezVous->listerRendezVous();
             break;
@@ -123,32 +122,62 @@ try {
             $controllerService->modifierService();
             break;       
 
-        case 'listerendezvousutilisateur':
-            $controllerGestionUtilisateur->afficherRendezVousUtilisateur();
-            break;
-
+            
         case 'actualiteadmin':
             $controllerActualite->showActualitesAdmin();
             break;
-
+                
         case 'ajouteractualite':
             $controllerActualite->ajouterActualite();
             break;
         case 'modifieractualite':
             $controllerActualite->modifierActualite();
             break;
+
         case 'supprimeractualite':
             $controllerActualite->supprimerActualite();
             break;
-
+                            
         case 'modifierhoraire':
             $controllerHoraire->modifierHoraire();
             break;
-
+                                
         case 'validerrendezvous':
             $controllerRendezVous->validerRendezvous();
             break;
+                                    
+                                    // coté utilisateur
+        case 'profil':
+            $controllerProfil->showProfil();
+            break;                                
+                                   
+        case 'prendrerendezvous':
+            $controller->showPrendreRendezVous();
+            break;
 
+        case 'validerrdv':
+            $controllerRendezVous->prendreRendezVous();
+            break;
+
+        case 'confirmationrdv':
+            $controllerRendezVous->showConfirmationRendezVous();
+            break;                             
+                                    
+        case 'listerendezvousutilisateur':
+            $controllerGestionUtilisateur->afficherRendezVousUtilisateur();
+            break;
+
+        case 'modifierrendezvousutilisateur':
+            $controllerGestionUtilisateur->modifierRendezVousUtilisateur();
+            break;
+
+        case 'supprimerRendezVousUtilisateur':
+            $controllerGestionUtilisateur->supprimerRendezVousUtilisateur();
+            break;
+
+        case 'modifierprofilutilisateur':
+            $controllerGestionUtilisateur->modifierProfilUtilisateur();
+            break;
 
 
 
