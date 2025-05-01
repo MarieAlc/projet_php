@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DR.Dupont</title>
+    <link rel="stylesheet" href="asset/style.css">
+
 </head>
 <header>
-    <nav style="display: flex; justify-content: space-between; background-color:rgb(168, 200, 232); padding: 10px;">
+    <nav >
         <div><img src="image/logo.png" alt="logo" style="height: 50px;"></div>
         <div>
             <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
@@ -34,18 +36,18 @@
          </ul>
         </div>
     </nav>
-</header>
-<body>
-
-    <h1 style="text-align: center">Bienvenue sur le site du DR.Dupont</h1>
-    <main>
-        <?= $content ?>
-    </main>
-</body>
-<footer>
-    <div style="background-color:rgb(168, 200, 232); padding: 10px; text-align: center;">
-        <p>&copy; 2025 DR.Dupont. Tous droits réservés.</p>
-        <p>Mentions légales | Politique de confidentialité</p>
-    </div>
-</footer>
+    </header>
+    <body>
+        <h1>Bienvenue sur le site du DR.Dupont</h1>       
+        <main>
+            <?= $content ?>
+        </main>
+        <footer>
+            <div >
+                <p>&copy; 2025 DR.Dupont. Tous droits réservés.</p>
+                <p>Mentions légales | Politique de confidentialité</p>
+            </div>
+        </footer>
+        
+    </body>
 </html>

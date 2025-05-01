@@ -1,4 +1,8 @@
-
+<?php
+if (isset($_GET['message']) && $_GET['message'] == 'veuillez-vous-connecter') {
+    echo "<p style='color: red;'>Veuillez vous inscrire ou vous connecter pour accéder à la prise de rendez-vous.</p>";
+}
+?>
 <h2>Inscription</h2>
 
 <?php if (!empty($errors)): ?>
