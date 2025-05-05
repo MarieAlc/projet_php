@@ -2,7 +2,12 @@
     margin: 0;
     padding: 0;
 }
-
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    line-height: 1.6;
+}
 
 nav{
     display: flex;
@@ -32,22 +37,61 @@ h1 {
     font-size: 2rem;    
 }
 
-h2 {
+h2, h3 {
     text-align: center;
-    margin: 40px 20px;
-    font-size: 1.5rem; 
-    text-decoration: underline;   
+    font-size: 2rem;
+    color: #2c3e50;
+    margin: 20px 0;
 }
-.presentation li{
-    text-align: left;
+h2 {
+    font-size: 2.2rem;
+    text-decoration: underline;
+}
+a {
     margin: 20px;
+    font-size: 1.2rem;
+    list-style: none;  
+    color: black;
+    text-decoration: none;
+}
+a:hover{
+    color:rgb(0, 106, 204);              
+    text-decoration: underline; 
+}
+
+section {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+section p, section li {
+    font-size: 1.1rem;
+    
+}
+
+section a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+section a:hover {
+    text-decoration: underline;
+}
+
+/* ACCUEIL */
+
+.presentation li{ 
     font-size: 1.1rem;
     list-style: none;  
     text-align: center;
 }
 .presentation p {
-    text-align: center;
-    margin: 20px;
+    text-align: center;   
     font-size: 1.1rem; 
       
 }
@@ -59,18 +103,6 @@ h2 {
     flex-wrap: wrap;
     margin: 50px;
     gap: 100px;
-}
-
-.services a {
-    margin: 20px;
-    font-size: 1.2rem;
-    list-style: none;  
-    color: black;
-    text-decoration: none;
-}
-.services a:hover{
-    color:rgb(0, 106, 204);              
-    text-decoration: underline; 
 }
 .services{
     display: flex;
@@ -96,6 +128,13 @@ h2 {
     align-items: center;
     margin: 40px;
 }
+.listeServices{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px; 
+}
+
 .btn button{
     background-color: rgb(0, 152, 179);
     color: white;
@@ -115,26 +154,7 @@ h2 {
     cursor: pointer;
 }
 
-.listeServices{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 50px; 
-}
-.listeServices h2{
- font-size: 2rem ;
-}
-.listeServices a{
-    text-decoration: none;
-    color: black;
-    font-size: 1.3rem;
-    margin: 10px;
-    font-weight: bold;
-}
-.listeServices a:hover{
-    color:rgb(0, 106, 204);              
-    text-decoration: underline; 
-}
+/* Services */
 
 .datailService{
     display: flex;
@@ -142,6 +162,286 @@ h2 {
     align-items: center;
     margin: 50px; 
     font-size: 1.2rem;
+}
+
+/* ACTU */ 
+
+.actualites {
+    background-color: #cadafe;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.actualite {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.actualite h3 {
+    color: #0d1b28;
+    margin-bottom: 10px;
+    text-align: center ;
+}
+
+.actualite p {
+    color: #3e3e3e;
+    line-height: 1.5;
+    text-align: center ;
+}
+
+.apropos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px; 
+}
+.apropos h3{
+ font-size: 1.5rem ;
+ text-align: center ;
+
+}
+.apropos p{
+    text-align: center;
+    margin: 20px;
+    font-size: 1.2rem; 
+}
+.form-container {
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 8px 0px 8px 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-container input[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background-color: #2c7be5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #1a5fc0;
+}
+
+.form-errors {
+    color: red;
+    max-width: 400px;
+    margin: 10px auto;
+    background-color: #ffe6e6;
+    border: 1px solid #ffcccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+.form-success {
+    color: green;
+    max-width: 400px;
+    margin: 10px auto;
+    background-color: #e6ffe6;
+    border: 1px solid #b3ffb3;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 10px;
+    font-size: 1rem;
+    resize: vertical; /* Permet à l’utilisateur d’agrandir manuellement */
+    box-sizing: border-box;
+}
+
+
+.form-link {
+    margin-top: 15px;
+    text-align: center;
+}
+form button{
+    background-color: rgb(0, 152, 179);
+    color: white;
+    text-align: center;
+    font-size: 1.3rem;
+    padding: 10px 20px;
+    margin: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.moyenneAvis {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #00288e;
+    margin-bottom: 15px;
+}
+
+.avis {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.avis p {
+    margin: 8px 0;
+}
+
+.avis strong {
+    color: #003268;
+}
+
+.avis img {
+    max-width: 75%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.ajouterAvis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #e0f7fa;
+    border-radius: 5px;
+}
+.ajouterAvis a {
+
+font-size: 1.2rem;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* UTILISATEUR */ 
+
+
+
+
+/* RDV */
+
+.section-titre {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin: 30px 0 10px;
+}
+
+.table-rendezvous {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;    
+}
+
+.table-rendezvous thead {
+    background-color: #3498db;
+    color: white;
+}
+
+.table-rendezvous th,td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-rendezvous tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.btn-modifier,
+.btn-supprimer {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.btn-modifier {
+    background-color: #27ae60;
+    color: white;
+}
+
+.btn-supprimer {
+    background-color: #e74c3c;
+    color: white;
+}
+.aucunRdv{
+    text-align: center;
+    color: #888;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* modifier Rdv */
+
+.confirmation-titre {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-top: 20px;
+}
+
+.confirmation-message {
+    text-align: center;
+    color: green;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.confirmation-details {
+    max-width: 500px;
+    margin: 0 auto
+    10px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    list-style-type: none;
+}
+
+.confirmation-details li {
+    margin-bottom: 10px;
+}
+
+.confirmation-erreur {
+    text-align: center;
+    color: red;
+    font-weight: bold;
 }
 
 

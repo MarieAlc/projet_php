@@ -5,10 +5,13 @@ class ControllerAvis extends Controller{
     public function afficherAvis() {
         $avisManager = new AvisManager($this->db);
         $avisList = $avisManager->getAllAvis(); 
+        $moyenneNote = $avisManager->getMoyenneNote();
+
         $views = new Views();
-        $views->render('avis', ['avisList' => $avisList]); 
+        $views->render('avis', ['avisList' => $avisList,
+          'moyenneNote' => $moyenneNote]); 
     }
-    public function ajouterAvis() {
+public function ajouterAvis() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
             $note = $_POST['note'];

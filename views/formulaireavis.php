@@ -1,5 +1,7 @@
 <h1>Ajouter un avis</h1>
 
+<div class="form-container">
+
 <form action="index.php?action=ajouteravis" method="post" enctype="multipart/form-data">
 
 <label for="nomPatient">Nom du patient:</label>
@@ -14,7 +16,10 @@
     <label for="photo">Photo (optionnel):</label>
     <input type="file" id="photo" name="photo">
 
+    <div style="display: flex; justify-content: center;">
     <button type="submit">Ajouter l'avis</button>
+</div>
 </form>
 
-<p><a href="index.php?action=avis">Retour aux avis</a></p>
+<p class="form-link"><a href="index.php?action=avis">Retour aux avis</a></p>
+</div>

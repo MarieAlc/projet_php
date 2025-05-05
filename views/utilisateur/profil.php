@@ -1,14 +1,13 @@
-<h2 style="text-align: center; color: #2c3e50;">Mon Profil</h2>
+<h2>Mon Profil</h2>
 
-<div style="display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+<section>
     <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
     <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
     <p><strong>Email :</strong> <?= htmlspecialchars($user['mail']) ?></p>
-</div>
+</section>
 
-<h3 style="text-align: center;color:rgb(38, 73, 110);">Mes Rendez-vous</h3>
-<div style="display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
-
+<h3>Mes Rendez-vous</h3>
+<section>
     <?php if (!empty($rendezvousList)): ?>
         <ul>
             <?php foreach ($rendezvousList as $rdv): ?>
@@ -22,9 +21,10 @@
     <?php else: ?>
         <p>Aucun rendez-vous à afficher.</p>
     <?php endif; ?>
-</div>
-<div style = " display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
-<p><a href="index.php?action=modifierprofilutilisateur&id=<?php echo $_SESSION['user']['id']; ?>">Modifier son profil</a></p>
+</section>
+
+<section>
+    <p><a href="index.php?action=modifierprofilutilisateur&id=<?php echo $_SESSION['user']['id']; ?>">Modifier son profil</a></p>
     <p><a href="index.php?action=listerendezvousutilisateur">Modifier ses rendez-vous</a></p>
     <p><a href="index.php?action=deconnexion">Se déconnecter</a></p>
-</div>
+</section>

@@ -8,6 +8,10 @@ if (isset($_SESSION['message'])) {
 
 <h1>Avis des patients</h1>
 
+<?php $avisManager = new AvisManager();
+    $noteMoyenne = $avisManager->getMoyenneNote();?>
+    <h3 class="moyenneAvis"><strong>Note moyenne : </strong> <?= $noteMoyenne ?>/5</h3>
+
 
 
 <!-- Liste des avis -->
@@ -15,7 +19,7 @@ if (isset($_SESSION['message'])) {
     <?php foreach ($avisList as $avis): ?>
     <div class="avis">
         <p><strong>Nom du patient :</strong> <?php echo htmlspecialchars($avis->getNomPatient()); ?></p>
-        <p><strong>Note :</strong> <?php echo htmlspecialchars($avis->getNote()); ?></p>
+        <p><strong>Note :</strong> <?php echo htmlspecialchars($avis->getNote()); ?> /5</p>
         <p><strong>Commentaire :</strong> <?php echo nl2br(htmlspecialchars($avis->getCommentaire())); ?></p>
         <p><strong>Date :</strong> <?php echo htmlspecialchars($avis->getDateAvis()); ?></p>
         <?php if ($avis->getPhoto()): ?>
@@ -29,4 +33,4 @@ if (isset($_SESSION['message'])) {
 <?php endif; ?>
 
 
-<p><a href="index.php?action=formulaireavis">Ajouter un avis</a></p>
+<div class ="ajouterAvis"><a href="index.php?action=formulaireavis">Ajouter un avis</a></div>

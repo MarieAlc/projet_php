@@ -8,6 +8,9 @@ if (!empty($_SESSION['message'])): ?>
     <?php unset($_SESSION['message']); ?>
 <?php endif; ?>
 
+
+
+
 <div style="display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
     <?php if (isset($user)): ?>
         <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
@@ -19,8 +22,6 @@ if (!empty($_SESSION['message'])): ?>
     <?php endif; ?>
 </div>
 
-
-
 <?php
 
 $rendezvousTotal = isset($rendezvousList) ? count($rendezvousList) : 0;
@@ -30,6 +31,10 @@ $rendezvousTotal = isset($rendezvousList) ? count($rendezvousList) : 0;
 <div style="max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
     <p><strong>Nombre total de patients :</strong> <?= $nombrePatients ?></p>
     <p><strong>Nombre total de rendez-vous :</strong> <?= $rendezvousTotal ?></p>
+    
+    <?php $avisManager = new AvisManager();
+    $noteMoyenne = $avisManager->getMoyenneNote();?>
+    <p><strong>Note moyenne : </strong> <?= $noteMoyenne ?>/5</p>
 </div>
 
 <h3 style="color: #34495e;text-align:center;">Actions disponibles :</h3>

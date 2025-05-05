@@ -1,12 +1,7 @@
-<?php
-if (isset($_GET['message']) && $_GET['message'] == 'veuillez-vous-connecter') {
-    echo "<p style='color: red;'>Veuillez vous inscrire ou vous connecter pour accéder à la prise de rendez-vous.</p>";
-}
-?>
 <h2>Inscription</h2>
 
 <?php if (!empty($errors)): ?>
-    <div style="color: red;">
+    <div class="form-errors">
         <ul>
             <?php foreach ($errors as $error): ?>
                 <li><?= htmlspecialchars($error) ?></li>
@@ -15,24 +10,25 @@ if (isset($_GET['message']) && $_GET['message'] == 'veuillez-vous-connecter') {
     </div>
 <?php endif; ?>
 
-<form action="/test/projet_php/index.php?action=inscription" method="post">
+<div class="form-container">
+    <form action="/test/projet_php/index.php?action=inscription" method="post">
+        <label>Nom :</label>
+        <input type="text" name="nom" required>
 
-    <label>Nom :</label>
-    <input type="text" name="nom" required><br>
+        <label>Prénom :</label>
+        <input type="text" name="prenom" required>
 
-    <label>Prénom :</label>
-    <input type="text" name="prenom" required><br>
+        <label>Email :</label>
+        <input type="email" name="mail" required>
 
-    <label>Email :</label>
-    <input type="email" name="mail" required><br>
+        <label>Téléphone :</label>
+        <input type="tel" name="telephone" required>
 
-    <label>Téléphone :</label>
-    <input type="tel" name="telephone" required><br>
+        <label>Mot de passe :</label>
+        <input type="password" name="motDePasse" required>
 
-    <label>Mot de passe :</label>
-    <input type="password" name="motDePasse" required><br>
+        <input type="submit" value="S'inscrire">
+    </form>
 
-    <input type="submit" value="S'inscrire">
-</form>
-
-<p>Déjà inscrit ? <a href="index.php?action=connexion">Connectez-vous ici</a></p>
+    <p class="form-link">Déjà inscrit ? <a href="index.php?action=connexion">Connectez-vous ici</a></p>
+</div>

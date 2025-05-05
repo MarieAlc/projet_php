@@ -1,8 +1,9 @@
 <?php
 
-  echo("<h1>Actualités</h1>");
+  echo("<h2>Actualités</h2>");
   setlocale(LC_TIME, 'fr_FR.UTF-8'); 
   
+  echo '<section>';
   foreach ($listeActualites as $actualite) {
       $actualiteTitre = $actualite->getTitre();
       $actualiteContenu = $actualite->getContenu();
@@ -10,8 +11,10 @@
   
       $actualiteDateFormatee = $actualiteDate->format('d m Y'); 
   
+      echo '<div class="actualite">';
       echo "<h3>$actualiteTitre</h3>";
       echo "<p>$actualiteContenu</p>";
       echo "<p><em>Publié le $actualiteDateFormatee</em></p>";
+      echo "</div>";
   }
-  
+  echo '</section>';

@@ -56,6 +56,17 @@ class AvisManager extends AbstractEntityManager {
         }
         return null;
     }
+
+    public function getMoyenneNote(){
+        $sql = "SELECT AVG(note) as moyenne FROM avis";
+        $stmt = $this->db->query($sql);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            return round($row['moyenne'], 1);
+        }
+        return null;
+    }
 }
 
 
