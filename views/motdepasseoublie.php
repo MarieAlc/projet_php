@@ -1,13 +1,13 @@
 <?php
 if (!empty($_SESSION['errors'])) {
     foreach ($_SESSION['errors'] as $error) {
-        echo "<p style='color: red;'>$error</p>";
+        echo "<div class='confirmation-erreur'>$error</div>";
     }
     unset($_SESSION['errors']);
 }
 
 if (!empty($_SESSION['message'])) {
-    echo "<p style='color: green;'>" . $_SESSION['message'] . "</p>";
+    echo "<div class='confirmation-message'>" . $_SESSION['message'] . "</p>";
     unset($_SESSION['message']);
 }
 ?>

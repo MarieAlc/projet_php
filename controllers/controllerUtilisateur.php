@@ -3,65 +3,7 @@ include_once 'init.php';
 
 class ControllerUtilisateur extends Controller{
 
-    public function showInscription(){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Récupérer et valider les données
-            $postData = $_POST;
-            $errors = [];     
-            $nom = trim($postData['nom'] ?? '');
-            $prenom = trim($postData['prenom'] ?? '');
-            $mail = trim($postData['mail'] ?? '');
-            $telephone = trim($postData['telephone'] ?? '');
-            $motDePasse = $postData['motDePasse'] ?? '';
-    
-            // Validation des données
-            if (empty($nom) || empty($prenom) || empty($mail) || empty($telephone) || empty($motDePasse)) {
-                $errors[] = "Tous les champs sont obligatoires.";
-            }    
-            if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                $errors[] = "Adresse email invalide.";
-            }    
-            if (preg_match('/\d/', $nom)) {
-                $errors[] = "Le nom ne doit pas contenir de chiffres.";
-            }    
-            if (preg_match('/\d/', $prenom)) {
-                $errors[] = "Le prénom ne doit pas contenir de chiffres.";
-            }    
-            if (
-                !preg_match('/[A-Z]/', $motDePasse) ||
-                !preg_match('/[a-z]/', $motDePasse) ||
-                !preg_match('/\d/', $motDePasse)
-            ) {
-                $errors[] = "Le mot de passe doit contenir une majuscule, une minuscule et un chiffre.";
-            }   
-            // Si des erreurs existent les stocker en session et rediriger vers la page d'inscription
-            if (!empty($errors)) {
-                $_SESSION['errors'] = $errors;
-                header('Location: /test/projet_php/index.php?action=inscription');
-                exit;
-            }    
-            // hashage du mot de passe et enregistrement de l'utilisateur
-            $motDePasseHash = password_hash($motDePasse, PASSWORD_BCRYPT);    
-            $utilisateurManager = new UtilisateurManager();
-    
-            try {
-                $utilisateurManager->ajouterUtilisateur($nom, $prenom, $mail, $motDePasseHash, $telephone);
-                $_SESSION['message'] = "Inscription réussie, vous pouvez vous connecter maintenant.";
-                header('Location: /test/projet_php/index.php?action=connexion');
-                exit;
-            } catch (PDOException $e) {
-                $_SESSION['errors'] = ["Erreur lors de l'enregistrement : " . $e->getMessage()];
-                header('Location: /test/projet_php/index.php?action=inscription');
-                exit;
-            }
-        }else {
-            $views = new Views();
-            $params = ['errors' => $_SESSION['errors'] ?? []];
-            $views->render("inscription", $params);
-            unset($_SESSION['errors']); // Effacer les erreurs après les avoir affichées
-        }
-        
-    }
+
 
     public function showConnexion(){
         if (isset($_SESSION['user']) && $_SESSION['user']['isAdmin'] != 1) {

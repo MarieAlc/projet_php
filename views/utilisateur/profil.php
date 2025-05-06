@@ -1,5 +1,13 @@
 <h2>Mon Profil</h2>
 
+<?php
+if (isset($_SESSION['message'])) {
+    echo '<div class="confirmation-message">' . htmlspecialchars($_SESSION['message']) . '</div>';
+
+    unset($_SESSION['message']);
+}
+?>
+
 <section>
     <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
     <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>

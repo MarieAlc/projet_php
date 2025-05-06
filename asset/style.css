@@ -3,12 +3,11 @@
     padding: 0;
 }
 body {
-    font-family: 'Poppins', sans-serif;
+   
     background-color: #f4f7fa;
     color: #333;
     line-height: 1.6;
 }
-
 nav{
     display: flex;
     align-items: center;
@@ -26,17 +25,11 @@ nav a{
     text-align: center ;
 
 }
-a:hover {
-    color:rgb(0, 0, 0);              
-    text-decoration: underline; 
-  }
-
 h1 {
     text-align: center;
     margin: 20px 0;
     font-size: 2rem;    
 }
-
 h2, h3 {
     text-align: center;
     font-size: 2rem;
@@ -58,7 +51,6 @@ a:hover{
     color:rgb(0, 106, 204);              
     text-decoration: underline; 
 }
-
 section {
     max-width: 800px;
     margin: 30px auto;
@@ -79,10 +71,36 @@ section a {
     text-decoration: none;
 }
 
-section a:hover {
+a:hover {
     text-decoration: underline;
 }
-
+button:hover {
+    background-color: #6007fb;
+}
+.deconnexion p{
+    display: flex;
+    justify-content: space-around
+}
+/* messages d'erreur et de confirmation */
+.confirmation-erreur {
+    color: red;
+    max-width: 400px;
+    margin: 10px auto;
+    background-color: #ffe6e6;
+    border: 1px solid #ffcccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+.confirmation-message {
+    color: green;
+    max-width: 400px;
+    margin: 10px auto;
+    background-color: #e6ffe6;
+    border: 1px solid #b3ffb3;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
 /* ACCUEIL */
 
 .presentation li{ 
@@ -122,12 +140,7 @@ section a:hover {
     font-weight: bold;
 }
 
-.btnRdv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 40px;
-}
+
 .listeServices{
     display: flex;
     flex-direction: column;
@@ -135,79 +148,77 @@ section a:hover {
     margin: 50px; 
 }
 
-.btn button{
-    background-color: rgb(0, 152, 179);
+.btnRdv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+}
+.btnRdv button {
+    background-color: #3287f7;
     color: white;
+    text-align: center;
     font-size: 1.3rem;
-    padding: 30px 50px;
+    padding: 10px 20px;
+    margin: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
-.btn button:hover{
-    background-color: rgb(18, 0, 208);
-    color: white;
-    font-size: 1.3rem;
-    padding: 30px 50px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+
 
 /* Services */
-
-.datailService{
+.service {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 50px; 
+   
+    font-size: 1.2rem;
+}
+
+.detailService{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     font-size: 1.2rem;
 }
 
 /* ACTU */ 
 
-.actualites {
-    background-color: #cadafe;
-    padding: 20px;
-    border-radius: 10px;
-}
+
 
 .actualite {
     margin-bottom: 20px;
     padding: 15px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.907);
     border: 1px solid #ddd;
     border-radius: 8px;
-}
-
-.actualite h3 {
-    color: #0d1b28;
-    margin-bottom: 10px;
-    text-align: center ;
+    text-align: center;
 }
 
 .actualite p {
-    color: #3e3e3e;
+
     line-height: 1.5;
     text-align: center ;
 }
+.actualite img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}
 
-.apropos{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 50px; 
-}
-.apropos h3{
- font-size: 1.5rem ;
- text-align: center ;
+/* A PROPOS */
+
+.apropos p {
+    text-align: center;  
+    margin: 20px 0;
 
 }
-.apropos p{
-    text-align: center;
-    margin: 20px;
-    font-size: 1.2rem; 
-}
+
+
+/* FORMULAIRES */
 .form-container {
     max-width: 450px;
     margin: 30px auto;
@@ -248,25 +259,7 @@ section a:hover {
     background-color: #1a5fc0;
 }
 
-.form-errors {
-    color: red;
-    max-width: 400px;
-    margin: 10px auto;
-    background-color: #ffe6e6;
-    border: 1px solid #ffcccc;
-    padding: 10px;
-    border-radius: 5px;
-}
-.form-success {
-    color: green;
-    max-width: 400px;
-    margin: 10px auto;
-    background-color: #e6ffe6;
-    border: 1px solid #b3ffb3;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-}
+
 textarea {
     width: 100%;
     min-height: 150px;
@@ -292,6 +285,7 @@ form button{
     border-radius: 5px;
     cursor: pointer;
 }
+/*AVIS*/
 
 .moyenneAvis {
     font-size: 1.3rem;
@@ -322,26 +316,25 @@ form button{
     border-radius: 5px;
     margin-top: 10px;
 }
-.ajouterAvis {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-    padding: 10px;
-    background-color: #e0f7fa;
+.btnAvis {
+    background-color: rgb(0, 152, 179);
+    color: white;   
+    font-size: 1.3rem;
+    padding: 10px 20px;
+    margin: 16px auto; 
+    border: none;
     border-radius: 5px;
-}
-.ajouterAvis a {
-
-font-size: 1.2rem;
-    color: black;
+    cursor: pointer;
+    display: block; 
+    text-align: center;
     text-decoration: none;
-    font-weight: bold;
+ 
+}
+.btnAvis a{
+    color: white;
 }
 
-a:hover {
-    text-decoration: underline;
-}
+
 
 
 /* UTILISATEUR */ 
@@ -416,12 +409,7 @@ a:hover {
     margin-top: 20px;
 }
 
-.confirmation-message {
-    text-align: center;
-    color: green;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
+
 
 .confirmation-details {
     max-width: 500px;
@@ -438,13 +426,131 @@ a:hover {
     margin-bottom: 10px;
 }
 
-.confirmation-erreur {
+
+
+
+/*admin */
+.btnAdmin{
+    display: flex;
+    flex-direction: column;
+}
+.btnAdmin input{
+    background-color: #2f5587;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 6px;    
+}
+.btnAdmin a {
+    color: white;
+    font-size: 1rem;
+    padding: 3px;
+    border-radius: 8px;
+}
+.modif{
+    background-color: #27ae60;
+}
+.supp{
+background-color: red;
+}
+.infoAdmin{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+.resume{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+.resume p strong{   
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin: 5px;
+}
+.resume p{
+   color: #ac0202;
+}
+.actions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+}
+.actions a{
+    color: #2c3e50;
+}
+.actions a:hover{
+    color: #3498db;
+    text-decoration: underline;
+}
+.modifRdv a {
+    font-size: 1rem;
+}
+.listeRdv{
+    max-width: 1000px ;
+    display: flex;
+}
+.suppRdv{
+    background-color: #e74c3c;
+}
+.validerRdv{
+background-color: green;
+}
+.modifHoraire{
+    display: flex;
+    justify-content: space-around
+}
+.modifHoraire th td {
+    padding: 12px;
+    border: 1px solid #ccc;
     text-align: center;
-    color: red;
+}
+.modifHoraire th {
+    background-color: #f5f5f5;
+    color: #333;
     font-weight: bold;
 }
+.modifHoraire input[type="time"]{
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.modifHoraire input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 5px;
+}
+.modifHoraire input[type="submit"] {
+    background-color: #2c7be5;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    margin: 10px auto;
+    transition: background-color 0.3s;
+}
+.modifHoraire input[type="submit"]:hover {
+    background-color: #1a5fc0;
+}
 
-
+.actualiteAdmin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.suppActu{
+    background-color: #e74c3c;
+}
+.modifActu{
+    background-color: #27ae60;
+}
 
 
 

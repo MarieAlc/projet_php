@@ -1,6 +1,6 @@
 <?php 
 if (!empty($_SESSION['message'])): ?>
-    <div class="form-success">
+    <div class="confirmation-message">
         <?= htmlspecialchars($_SESSION['message']) ?>
     </div>
     <?php unset($_SESSION['message']); ?>

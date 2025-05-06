@@ -27,10 +27,22 @@ class ControllerActualite extends Controller {
             $id = $_POST['id'];
             $titre = $_POST['titre'];
             $contenu = $_POST['contenu'];
-            
+              
+            $photo = null;
+            if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+                
+                $photoName = uniqid() . '_' . $_FILES['photo']['name'];
+                $photoPath = 'uploads/actualites/' . $photoName;
+    
+                move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath);
+    
+                
+                $photo = $photoPath;
+            }
+    
           
             $actualiteManager = new ActualitesManager();
-            $actualiteManager->modifierActualite($id, $titre, $contenu);
+            $actualiteManager->modifierActualite($id, $titre, $contenu, $photo);
             
             $_SESSION['message'] = "L'actualité a été modifiée avec succès!";
             header('Location: index.php?action=actualiteadmin');
@@ -42,17 +54,20 @@ class ControllerActualite extends Controller {
             $actualiteManager = new ActualitesManager();
             $actualite = $actualiteManager->getActualite($id);
     
-          
             $titre = $actualite->getTitre();
             $contenu = $actualite->getContenu();
+            $photo = $actualite->getPhoto(); 
+    
             $views = new Views();
             $views->render("admin/actualiteModifier", [
                 'titre' => $titre,
                 'contenu' => $contenu,
+                'photo' => $photo, 
                 'id' => $id
             ]);
         }
     }
+    
 
     public function supprimerActualite() {
         $this->verifierAdmin();
@@ -75,16 +90,22 @@ class ControllerActualite extends Controller {
         if (isset($_POST['titre'], $_POST['contenu'])) {
             $titre = $_POST['titre'];
             $contenu = $_POST['contenu'];
-            $date = new DateTime(); 
+            $photo = $_FILES['photo'] ?? null; // Récupère la photo téléchargée
     
             $actualiteManager = new ActualitesManager();
-            $actualiteManager->ajouterActualite($titre, $contenu, $date);
-    
-            $_SESSION['message'] = "Actualité ajoutée avec succès.";
+            try {
+                $actualiteManager->ajouterActualite($titre, $contenu, $photo);
+                $_SESSION['message'] = "Actualité ajoutée avec succès.";
+            } catch (Exception $e) {
+                $_SESSION['message'] = "Erreur : " . $e->getMessage();
+            }
+            
             header('Location: index.php?action=actualiteadmin');
             exit;
         }
     }
+    
+
 }
 
 

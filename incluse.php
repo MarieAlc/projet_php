@@ -33,3 +33,4 @@ include_once 'controllers/controllerAdmin/ControllerHoraire.php';
 include_once 'controllers/ControllerGestionUtilisateur.php';
 include_once 'controllers/controllerAdmin/ControllerServices.php';
 include_once 'controllers/ControllerAvis.php';
+include_once 'controllers/controllerAdmin/ControllerApropos.php';

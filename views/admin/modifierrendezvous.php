@@ -1,15 +1,17 @@
 <h2>Modifier le rendez-vous</h2>
 
 <?php if (!empty($message)): ?>
-    <p style="color: green;"><?= htmlspecialchars($message) ?></p>
+    <div class='confirmation-message'><?= htmlspecialchars($message) ?></p>
 <?php endif; ?>
 
 <?php if (!empty($errors)): ?>
-    <ul style="color: red;">
-        <?php foreach ($errors as $error): ?>
-            <li><?= htmlspecialchars($error) ?></li>
-        <?php endforeach; ?>
-    </ul>
+    <div class='confirmation-erreur'>
+        <ul>
+            <?php foreach ($errors as $error): ?>
+                <li><?= htmlspecialchars($error) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
 <?php endif; ?>
 
 <form action="index.php?action=modifierrendezvous&id=<?= $rdv->getId() ?>" method="post">

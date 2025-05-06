@@ -32,3 +32,37 @@ Merci de votre confiance.
 Cordialement,
 L'équipe Dr. Dupont
 
+À : sophie.durant@exemple.fr
+Sujet : Confirmation de votre rendez-vous chez Dr. Dupont
+
+Bonjour,
+
+Votre rendez-vous a été confirmé.
+
+Résumé de votre rendez-vous :
+Date : 2025-10-15
+Heure : 00:00
+Service : Pose de couronnes dentaires
+
+Merci de votre confiance.
+
+Cordialement,
+L'équipe Dr. Dupont
+
+À : sophie.durant@exemple.fr
+Sujet : Confirmation de votre rendez-vous chez Dr. Dupont
+
+Bonjour,
+
+Votre rendez-vous a été confirmé.
+
+Résumé de votre rendez-vous :
+Date : 2025-05-15
+Heure : 16:39
+Service : Pose de facettes dentaires
+
+Merci de votre confiance.
+
+Cordialement,
+L'équipe Dr. Dupont
+

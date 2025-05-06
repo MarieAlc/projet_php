@@ -17,6 +17,7 @@ try {
     $controllerGestionUtilisateur = new ControllerGestionUtilisateur();
     $controllerService = new ControllerServices();
     $controllerAvis = new ControllerAvis();
+    $controllerApropos = new ControllerApropos();
 
     switch ($action) {
 
@@ -144,6 +145,21 @@ try {
                                 
         case 'validerrendezvous':
             $controllerRendezVous->validerRendezvous();
+            break;
+
+        case 'aproposadmin':
+            $controllerApropos->aproposAdmin();
+            break;
+
+        case 'modifierapropos':
+            $controllerApropos->modifierApropos();
+            break;
+        case 'supprimerapropos':
+            $controllerApropos->supprimerApropos();
+            break;
+
+        case 'ajouterapropos':
+            $controllerApropos->ajouterApropos();
             break;
                                     
                                     // coté utilisateur

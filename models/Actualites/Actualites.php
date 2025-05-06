@@ -5,6 +5,7 @@ class Actualite extends AbstractEntity  {
     private int $id;
     private string $titre;
     private string $contenu;
+    private string $photo;
     private DateTime $date;
 
 
@@ -29,6 +30,12 @@ class Actualite extends AbstractEntity  {
     }
     public function getContenu (): string {
         return $this->contenu;
+    }
+    public function setPhoto (string $photo): void {
+        $this->photo = $photo;
+    }
+    public function getPhoto (): string {
+        return $this->photo;
     }
 
     public function setDate ( string $date):void {

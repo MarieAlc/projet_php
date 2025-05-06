@@ -1,14 +1,11 @@
 <h2>Inscription</h2>
-
-<?php if (!empty($errors)): ?>
-    <div class="form-errors">
-        <ul>
-            <?php foreach ($errors as $error): ?>
-                <li><?= htmlspecialchars($error) ?></li>
-            <?php endforeach; ?>
-        </ul>
+<?php if (!empty($message)) : ?>
+    <div class="confirmation-message">
+        <?= htmlspecialchars($message) ?>
     </div>
 <?php endif; ?>
+   
+
 
 <div class="form-container">
     <form action="/test/projet_php/index.php?action=inscription" method="post">

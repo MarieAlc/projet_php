@@ -41,14 +41,15 @@
             <?php endforeach; ?>
         </ul>
     </section>
+
 <div class="btnRdv">
- <?php if (isset($_SESSION['user'])): ?>
-        <a class="btn" href="index.php?action=prendrerendezvous">
+    <?php if (isset($_SESSION['user'])): ?>
+        <a  href="index.php?action=prendrerendezvous">
             <button>Prendre rendez-vous</button>
         </a>
     <?php else: ?>
-        <a class="btn" href="index.php?action=inscription&message=veuillez-vous-connecter">
-            <button>Prendre rendez-vous</button>
-        </a>
+        </a><button onclick="alert('Veuillez vous inscrire ou vous connecter pour prendre rendez-vous.')">
+            Prendre rendez-vous
+        </button>
     <?php endif; ?>
 </div>

@@ -49,11 +49,6 @@ public function ajouterAvis() {
     }
     public function deposerAvis() {
        
-        if (!isset($_SESSION['user_id'])) {
-            $_SESSION['message'] = "Vous devez être connecté pour laisser un avis.";
-            header('Location: index.php?action=connexion');
-            exit;
-        }
     
         $note = $_POST['note'] ?? null;
         $commentaire = $_POST['commentaire'] ?? null;

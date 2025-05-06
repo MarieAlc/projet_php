@@ -1,3 +1,10 @@
+<?php
+if (isset($_SESSION['message'])) {
+    echo '<div class="confirmation-message">' . htmlspecialchars($_SESSION['message']) . '</div>';
+
+    unset($_SESSION['message']);
+}
+?>
 <h2>Prendre Rendez-vous</h2>
 <div class="form-container">
     <form action="index.php?action=validerrdv" method="post">

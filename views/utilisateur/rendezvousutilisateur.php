@@ -1,5 +1,11 @@
 <h2 class="section-titre">Modifier mon rendez-vous</h2>
+
+<?php if (!empty($message)): ?>
+    <div class="confirmation-message"><?= htmlspecialchars($message) ?></div>
+<?php endif; ?>
+
 <h2 class="section-titre">Mes Rendez-vous</h2>
+
 
 <?php if (!empty($rendezvousList)): ?>
     <table class="table-rendezvous">
