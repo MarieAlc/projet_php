@@ -1,7 +1,7 @@
 <h2>Liste des utilisateurs</h2>
 
 <?php if (!empty($message)): ?>
-    <div class='confirmation-message' style="color: green;"><?= htmlspecialchars($message) ?></div>
+    <div class='confirmation-message'><?= htmlspecialchars($message) ?></div>
 <?php endif; ?>
 
 <?php if (!empty($errors)): ?>

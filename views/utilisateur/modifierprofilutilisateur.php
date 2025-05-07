@@ -15,8 +15,8 @@
         <label for="telephone">Téléphone :</label>
         <input type="tel" name="telephone" id="telephone" value="<?= htmlspecialchars($utilisateur->getTelephone()) ?>" required><br><br>   
 
-        <label for="motdepasse">Mot de passe :</label>
-        <input type="password" id="motdepasse" name="motdepasse"><br>
+        <label for="motDePasse">Mot de passe :</label>
+        <input type="password" id="motDePasse" name="motDePasse"><br>
 
         <input type="submit" value="Modifier"> 
 </div>

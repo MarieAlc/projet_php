@@ -19,9 +19,7 @@ foreach ($listeActualites as $actualite) {
     echo "<p>$contenu</p>";
     if ($photo) {
       echo "<img src='$photo' alt='Image de l'actualité' class='actualite-photo'>";
-  } else {
-      echo "<p>Aucune photo pour cette actualité.</p>";
-  }
+  } 
     echo "<p><em>Publié le $date</em></p>";
 
     echo "<form action='index.php?action=supprimeractualite' method='post' >
