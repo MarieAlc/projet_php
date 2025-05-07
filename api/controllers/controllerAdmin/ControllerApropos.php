@@ -22,7 +22,7 @@ class ControllerApropos extends Controller{
             $aproposManager->modifierApropos($id, $titre, $texte);
    
             $_SESSION['message'] = "La section 'À propos' a été modifiée avec succès!";
-            header('Location: public/index.php?action=aproposadmin');
+            header('Location: index.php?action=aproposadmin');
             exit;
         }
   
@@ -48,7 +48,7 @@ class ControllerApropos extends Controller{
             $aproposManager->supprimerApropos($id);
   
             $_SESSION['message'] = "La section À propos a été supprimée avec succès!";
-            header('Location: public/index.php?action=aproposadmin');
+            header('Location: index.php?action=aproposadmin');
             exit;
         }
     }
@@ -61,7 +61,7 @@ class ControllerApropos extends Controller{
             $aproposManager->ajouterApropos($titre, $texte);
             
             $_SESSION['message'] = "L'élément 'À propos' a été ajouté avec succès!";
-            header('Location: public/index.php?action=aproposadmin');
+            header('Location: index.php?action=aproposadmin');
             exit;
         }
     }

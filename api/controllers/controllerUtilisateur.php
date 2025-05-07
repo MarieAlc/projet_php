@@ -8,10 +8,10 @@ class ControllerUtilisateur extends Controller{
 
     public function showConnexion(){
         if (isset($_SESSION['user']) && $_SESSION['user']['isAdmin'] != 1) {
-            header('Location: /test/projet_php/public/index.php?action=profil');
+            header('Location: index.php?action=profil');
             exit;
         }else if (isset($_SESSION['user'])&& $_SESSION['user']['isAdmin'] == 1) {
-            header('Location: /test/projet_php/public/index.php?action=profilAdmin');
+            header('Location: index.php?action=profilAdmin');
             exit;
         }
     
@@ -27,7 +27,7 @@ class ControllerUtilisateur extends Controller{
             // Validation des données
             if (empty($mail) || empty($motDePasse)) {
                 $_SESSION['errors'] = ["Email et mot de passe sont requis."];
-                header('Location: /test/projet_php/public/index.php?action=connexion');
+                header('Location: index.php?action=connexion');
                 exit;
             }
     
@@ -47,14 +47,14 @@ class ControllerUtilisateur extends Controller{
                 $_SESSION['message'] = "Vous êtes connecté ! Bienvenue sur votre profil.";
          
                 if ($utilisateur['isAdmin'] === 1) {
-                    header('Location: /test/projet_php/public/index.php?action=profiladmin');
+                    header('Location: index.php?action=profiladmin');
                 } else {
-                    header('Location: /test/projet_php/public/index.php?action=profil');
+                    header('Location: index.php?action=profil');
                 }
                 exit;
             } else {
                 $_SESSION['errors'] = ["Email ou mot de passe incorrect."];
-                header('Location: /test/projet_php/public/index.php?action=connexion');
+                header('Location: index.php?action=connexion');
                 exit;
             }
         }

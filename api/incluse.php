@@ -21,7 +21,7 @@ include_once 'models/apropos/AproposManager.php';
 include_once 'models/utilisateur/Utilisateur.php';
 include_once 'models/utilisateur/UtilisateurManager.php';
 
-include_once '../views/Views.php';
+include_once 'views/Views.php';
 include_once 'controllers/Controller.php';
 include_once 'controllers/ControllerUtilisateur.php';
 include_once 'controllers/ControllerProfil.php';

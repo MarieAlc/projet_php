@@ -107,10 +107,10 @@ class ControllerRendezVous extends Controller {
     
             $rendezvousManager->supprimerRendezVous($id);
             $_SESSION['message'] = "Rendez-vous supprimé avec succès.";
-            header('Location: /test/projet_php/public/index.php?action=listerendezvous');
+            header('Location: index.php?action=listerendezvous');
             exit;
         } else {
-            header('Location: /test/projet_php/public/index.php?action=listerendezvous');
+            header('Location: index.php?action=listerendezvous');
             exit;
     }
     }
@@ -135,7 +135,7 @@ class ControllerRendezVous extends Controller {
     
                 // Message de succès
                 $_SESSION['message'] = "Rendez-vous modifié avec succès.";
-                header('Location: /test/projet_php/public/index.php?action=listerendezvous');
+                header('Location: index.php?action=listerendezvous');
                 exit;
             }
     
@@ -144,7 +144,7 @@ class ControllerRendezVous extends Controller {
             $views->render('admin/modifierRendezVous', ['rdv' => $rdv, 'services' => $services]);
         } else {
             // Rediriger si l'id est manquant
-            header('Location: /test/projet_php/public/index.php?action=listerendezvous');
+            header('Location: index.php?action=listerendezvous');
             exit;
         }
     }
@@ -152,7 +152,7 @@ class ControllerRendezVous extends Controller {
         $id=$_GET['id'] ?? null; 
         if (empty($id) || !is_numeric($id)) {
             $_SESSION['message'] = "L'ID du rendez-vous est invalide.";
-            header('Location: public/index.php?action=listerendezvous');
+            header('Location: index.php?action=listerendezvous');
             exit;
         }
         $rendezvousManager = new RendezvousManager($this->db);
@@ -160,7 +160,7 @@ class ControllerRendezVous extends Controller {
 
         if (!$rendezvous) {
             $_SESSION['message'] = "Rendez-vous introuvable.";
-            header('Location: public/index.php?action=listerendezvous');
+            header('Location: index.php?action=listerendezvous');
             exit;
         }
         $updateSuccess = $rendezvousManager->updateStatutRendezvous($id, 1); // 1 pour "validé"
@@ -174,7 +174,7 @@ class ControllerRendezVous extends Controller {
             $_SESSION['message'] = "Échec de la confirmation du rendez-vous.";
         }
 
-        header('Location: public/index.php?action=listerendezvous');
+        header('Location: index.php?action=listerendezvous');
         exit;
     }
     

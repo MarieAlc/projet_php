@@ -53,7 +53,7 @@ class ControllerProfil extends Controller {
     public function deconnexion(){
 
         session_destroy();
-        header('Location: /test/projet_php/public/index.php?action=accueil');
+        header('Location: /test/projet_php/index.php?action=accueil');
         exit;
     }
     public function showInscription(){
@@ -90,7 +90,7 @@ class ControllerProfil extends Controller {
             // Si des erreurs existent les stocker en session et rediriger vers la page d'inscription
             if (!empty($errors)) {
                 $_SESSION['errors'] = $errors;
-                header('Location: /test/projet_php/public/index.php?action=inscription');
+                header('Location: index.php?action=inscription');
                 exit;
             }    
             // hashage du mot de passe et enregistrement de l'utilisateur
@@ -101,11 +101,11 @@ class ControllerProfil extends Controller {
                 $role = 0; // 0 pour utilisateur normal
                 $utilisateurManager->ajouterUtilisateur($nom, $prenom, $mail, $motDePasseHash, $telephone,$role);
                 $_SESSION['message'] = "Inscription réussie, vous pouvez vous connecter maintenant.";
-                header('Location: /test/projet_php/public/index.php?action=connexion');
+                header('Location: index.php?action=connexion');
                 exit;
             } catch (PDOException $e) {
                 $_SESSION['errors'] = ["Erreur lors de l'enregistrement : " . $e->getMessage()];
-                header('Location: /test/projet_php/public/index.php?action=inscription');
+                header('Location: index.php?action=inscription');
                 exit;
             }
         }else {
@@ -120,10 +120,10 @@ class ControllerProfil extends Controller {
 
     public function showConnexion(){
         if (isset($_SESSION['user']) && $_SESSION['user']['isAdmin'] != 1) {
-            header('Location: /test/projet_php/public/index.php?action=profil');
+            header('Location: index.php?action=profil');
             exit;
         }else if (isset($_SESSION['user'])&& $_SESSION['user']['isAdmin'] == 1) {
-            header('Location: /test/projet_php/public/index.php?action=profilAdmin');
+            header('Location: index.php?action=profilAdmin');
             exit;
         }
     
@@ -139,7 +139,7 @@ class ControllerProfil extends Controller {
             // Validation des données
             if (empty($mail) || empty($motDePasse)) {
                 $_SESSION['errors'] = ["Email et mot de passe sont requis."];
-                header('Location: /test/projet_php/public/index.php?action=connexion');
+                header('Location: index.php?action=connexion');
                 exit;
             }
     
@@ -159,14 +159,14 @@ class ControllerProfil extends Controller {
                 $_SESSION['message'] = "Vous êtes connecté ! Bienvenue sur votre profil.";
          
                 if ($utilisateur['isAdmin'] === 1) {
-                    header('Location: /test/projet_php/public/index.php?action=profiladmin');
+                    header('Location: index.php?action=profiladmin');
                 } else {
-                    header('Location: /test/projet_php/public/index.php?action=profil');
+                    header('Location: index.php?action=profil');
                 }
                 exit;
             } else {
                 $_SESSION['errors'] = ["Email ou mot de passe incorrect."];
-                header('Location: /test/projet_php/public/index.php?action=connexion');
+                header('Location: index.php?action=connexion');
                 exit;
             }
         }
@@ -215,7 +215,7 @@ class ControllerProfil extends Controller {
             $_SESSION['errors'] = ["Aucun utilisateur trouvé avec cette adresse mail."];
         }
 
-        header('Location: /test/projet_php/public/index.php?action=motdepasseoublie');
+        header('Location: index.php?action=motdepasseoublie');
         exit;
     } else {
         // Affichage du formulaire

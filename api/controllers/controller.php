@@ -5,13 +5,13 @@ class Controller {
 
     protected function verifierAdmin() {
         if (!isset($_SESSION['user']) || $_SESSION['user']['isAdmin'] != 1) {
-            header('Location: /test/projet_php/public/index.php?action=profiladmin');
+            header('Location: index.php?action=profiladmin');
             exit;
         }
     }
     protected function verifierConnexion() {
         if (!isset($_SESSION['user'])) {
-            header('Location: /test/projet_php/public/index.php?action=connexion');
+            header('Location: index.php?action=connexion');
             exit;
         }
     }

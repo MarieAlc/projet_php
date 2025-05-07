@@ -39,7 +39,7 @@ public function ajouterAvis() {
             $avisManager->ajouterAvis($avis);
 
             $_SESSION['message'] = "Avis ajouté avec succès.";
-            header('Location: public/index.php?action=avis');
+            header('Location:index.php?action=avis');
             exit;
         }
         $views = new Views();
@@ -59,7 +59,7 @@ public function ajouterAvis() {
     
         if ($note < 1 || $note > 5 || empty($commentaire)) {
             $_SESSION['message'] = "Note et commentaire sont obligatoires.";
-            header('Location: public/index.php?action=formulaireavis');
+            header('Location: index.php?action=formulaireavis');
             exit;
         }
         $avis = new Avis();
@@ -71,7 +71,7 @@ public function ajouterAvis() {
         
         if ($photo && $photo['error'] === UPLOAD_ERR_OK) {
            
-            $targetDir = "uploads/"; 
+            $targetDir = "public/uploads/"; 
             $targetFile = $targetDir . basename($photo["name"]);
             move_uploaded_file($photo["tmp_name"], $targetFile);
             $avis->setPhoto($targetFile);
@@ -81,7 +81,7 @@ public function ajouterAvis() {
         $avisManager->saveAvis($avis);
     
         $_SESSION['message'] = "Avis déposé avec succès.";
-        header('Location: public/index.php?action=avis');
+        header('Location: index.php?action=avis');
         exit;
     }
 }

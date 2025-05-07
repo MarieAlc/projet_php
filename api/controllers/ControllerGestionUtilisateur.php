@@ -23,7 +23,7 @@ class ControllerGestionUtilisateur extends Controller {
             ]);
         } else {
             // Si l'utilisateur n'est pas connecté, redirection vers la page de connexion
-            header('Location: /test/projet_php/public/index.php?action=connexion');
+            header('Location: index.php?action=connexion');
             exit;
         }
     }
@@ -47,7 +47,7 @@ class ControllerGestionUtilisateur extends Controller {
                 $_SESSION['message'] = "Rendez-vous modifié avec succès.";
     
                
-                header('Location: /test/projet_php/public/index.php?action=listerendezvousutilisateur');
+                header('Location: index.php?action=listerendezvousutilisateur');
                 exit;
             }
             $views = new Views();
@@ -72,10 +72,10 @@ class ControllerGestionUtilisateur extends Controller {
     
             $rendezvousManager->supprimerRendezVous($id);
             $_SESSION['message'] = "Rendez-vous supprimé avec succès.";
-            header('Location: /test/projet_php/public/index.php?action=listerendezvousutilisateur');
+            header('Location: index.php?action=listerendezvousutilisateur');
             exit;
         } else {
-            header('Location: /test/projet_php/public/index.php?action=listerendezvousutilisateur');
+            header('Location: index.php?action=listerendezvousutilisateur');
             exit;
         }
     }

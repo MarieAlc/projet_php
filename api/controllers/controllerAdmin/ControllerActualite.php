@@ -32,7 +32,7 @@ class ControllerActualite extends Controller {
             if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
                 
                 $photoName = uniqid() . '_' . $_FILES['photo']['name'];
-                $photoPath = 'uploads/actualites/' . $photoName;
+                $photoPath = '../public/uploads/actualites/' . $photoName;
     
                 move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath);
     
