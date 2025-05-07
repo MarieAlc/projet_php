@@ -26,8 +26,8 @@ if (!empty($_SESSION['message'])): ?>
     <section >
         <h3 style=>Résumé :</h3>
         <div class='resume'>
-            <p><strong>Nombre total de patients :</strong> <?= $nombrePatients ?></p>
-            <p><strong>Nombre total de rendez-vous :</strong> <?= $rendezvousTotal ?></p>
+            <p><strong>Nombre de patients :</strong> <?= $nombrePatients ?></p>
+            <p><strong>Nombre de rendez-vous :</strong> <?= $rendezvousTotal ?></p>
             
             <?php $avisManager = new AvisManager();
             $noteMoyenne = $avisManager->getMoyenneNote();?>
@@ -36,7 +36,7 @@ if (!empty($_SESSION['message'])): ?>
         </div>
     </section>
 
-    <section>
+    <section >
         <h3>Actions disponibles :</h3>
         <div class='actions'>
             <div>

@@ -15,7 +15,7 @@
 
 <h3>Liste des Services</h3>
 <section>
-    <table>
+    <table class="tableServices">
         <thead>
             <tr>
                 <th>Nom</th>

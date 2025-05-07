@@ -196,16 +196,17 @@ class ControllerProfil extends Controller {
 
         if ($utilisateur) {
             // Envoi d’un mail à l’admin
-            $adminMail = 'alcantara.marie@outlook.fr'; // Test avec ton mail
+            $adminMail = 'alcantara.marie@outlook.fr'; 
             $sujet = "Demande de réinitialisation de mot de passe";
             $message = "Un utilisateur a demandé une réinitialisation de mot de passe :\n\n"
                      . "Nom : " . $utilisateur['nom'] . "\n"
                      . "Prénom : " . $utilisateur['prenom'] . "\n"
                      . "Email : " . $utilisateur['mail'] . "\n"
                      . "ID : " . $utilisateur['id'] . "\n";
+            $headers = "From: \"Site Dr. Dupont\" <no-reply@alwaysdata.net>";
 
-            // Remplacer mail() par file_put_contents pour tester
-            file_put_contents('mail_log.txt', "À : $adminMail\nSujet : $sujet\n\n$message");
+           
+                     mail($adminMail, $sujet, $message, $headers);
 
             // Ajouter un message de succès si le fichier est généré
             $_SESSION['message'] = "Votre demande a été envoyée à l'administrateur. Vous recevrez un nouveau mot de passe prochainement.";

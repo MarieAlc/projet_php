@@ -190,10 +190,9 @@ class ControllerRendezVous extends Controller {
         $message .= "Date : " . $date_rdv . "\n";
         $message .= "Heure : " . $heure_rdv . "\n";
         $message .= "Service : " . $services . "\n\nMerci de votre confiance.\n\nCordialement,\nL'équipe Dr. Dupont";
-        $headers = "From: \"Cabinet Dr. Dupont\" <alcantara.marie@outlook.fr>";
+        $headers = "From: \"Cabinet Dr. Dupont\" <no-reply@alwaysdata.net>";
     
-        $logMessage = "À : $email_patient\nSujet : $subject\n\n$message";
-        file_put_contents('email_log.txt', $logMessage . "\n\n", FILE_APPEND);
+        mail($email_patient, $subject, $message, $headers);
     
       
     }

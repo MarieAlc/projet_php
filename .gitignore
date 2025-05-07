@@ -1,2 +1,16 @@
+# Ignorer le fichier de configuration s'il contient des informations sensibles
 config/config.php
 
+# Ignorer le dossier vendor de Composer
+/vendor/
+
+# Ignorer les fichiers PHPUnit au format .phar 
+phpunit.phar
+phpunit-12.1.4.phar
+
+# Ignorer les fichiers de tests 
+tests/
+
+# Ignorer les fichiers Composer (lock et json) 
+composer.lock
+composer.json

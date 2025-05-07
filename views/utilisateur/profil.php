@@ -12,6 +12,7 @@ if (isset($_SESSION['message'])) {
     <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
     <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
     <p><strong>Email :</strong> <?= htmlspecialchars($user['mail']) ?></p>
+    <p><strong>Telephone :</strong><?= htmlspecialchars ($user['telephone'])?></p>
 </section>
 
 <h3>Mes Rendez-vous</h3>

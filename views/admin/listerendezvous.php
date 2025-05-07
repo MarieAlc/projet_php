@@ -5,7 +5,7 @@
 
 <h2>Liste des rendez-vous non confirmés</h2>
 <section class='listeRdv'>
-    <table>
+    <table class="tableRdv">
         <thead>
             <tr>
                 <th>Date</th>
@@ -22,6 +22,7 @@
                     <td><?= htmlspecialchars($rdv->getHeure()->format('H:i')) ?></td>
                     <td><?= htmlspecialchars($rdv->getMotifNom()) ?></td>              
                     <td><?= htmlspecialchars($rdv->getMailPatient()) ?></td>
+                
 
                     <td class ='modifRdv'><a href="index.php?action=modifierrendezvous&id=<?= $rdv->getId() ?>">Modifier</a></td>
                     <td>
@@ -35,6 +36,8 @@
                             <button class='validerRdv' type="submit">✔ Valider</button>
                         </form>
                     </td>
+                
+
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -43,13 +46,13 @@
 
 <h2>Liste des rendez-vous confirmés</h2>
 <section>
-    <table>
+    <table class="tableRdv">
         <thead>
             <tr>
                 <th>Date</th>
                 <th>Heure</th>
                 <th>Motif</th>
-               
+                              
                 <th>Mail</th> 
                 <th>Actions</th>
             </tr>
@@ -60,6 +63,7 @@
                     <td><?= htmlspecialchars($rdv->getDate()) ?></td>
                     <td><?= htmlspecialchars($rdv->getHeure()->format('H:i')) ?></td>
                     <td><?= htmlspecialchars($rdv->getMotifNom()) ?></td>
+                    
                                         <td><?= htmlspecialchars($rdv->getMailPatient()) ?></td>
                     <td>
                         <form action="index.php?action=supprimerRendezVous" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce rendez-vous ?');" style="display:inline;">

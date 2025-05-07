@@ -10,12 +10,15 @@
 
     <form method="post" action="index.php?action=modifierhoraire">
         <table>
-            <tr>
-                <th>Jour</th>
-                <th>Ouverture</th>
-                <th>Fermeture</th>
-                <th>Overt / Fermer</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Jour</th>
+                    <th>Ouverture</th>
+                    <th>Fermeture</th>
+                    <th>Overt / Fermer</th>
+                </tr>
+
+            </thead>
             <?php if (!empty($horaires)): ?>
                 <?php foreach ($horaires as $horaire): ?>
                     <tr>
@@ -26,7 +29,7 @@
                         <td>
                             <input type="time" name="fermeture[<?php echo $horaire->getId(); ?>]" value="<?php echo $horaire->getHeure_fin()->format('H:i'); ?>">
                         </td>
-                        <td>
+                        <td class="checkbox">
                         <input type="checkbox" name="ferme[<?php echo $horaire->getId(); ?>]" id="ferme_<?php echo $horaire->getId(); ?>" <?php echo !$horaire->getOuvert() ? 'checked' : ''; ?>>
                         <label for="ferme_<?php echo $horaire->getId(); ?>">Fermé</label>
                         </td>

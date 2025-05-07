@@ -14,7 +14,7 @@
     </div>
 <?php endif; ?>
 <section>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Nom</th>
