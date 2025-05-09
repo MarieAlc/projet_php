@@ -64,36 +64,12 @@ class ActualitesManager extends AbstractEntityManager {
         ]);
     }
 
-    public function ajouterActualite($titre, $contenu, $photo) {
-        
-        if ($photo && $photo['error'] === UPLOAD_ERR_OK) {
-            $targetDirectory = 'uploads/actualites/';
-            $targetFile = $targetDirectory . basename($photo['name']);
-            $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-    
-          
-            $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-            if (!in_array($imageFileType, $allowedExtensions)) {
-               
-                throw new Exception("Ce fichier n'est pas une image valide.");
-            }
-    
-           
-            if (move_uploaded_file($photo['tmp_name'], $targetFile)) {
-                $photoName = $targetFile;
-            } else {
-               
-                throw new Exception("Erreur lors du téléchargement de l'image.");
-            }
-        } else {
-            $photoName = null; 
-        }
-    
+    public function ajouterActualite($titre, $contenu, $photoPath = null) {
         $statement = $this->db->prepare("INSERT INTO actualites (titre, contenu, date, photo) VALUES (:titre, :contenu, NOW(), :photo)");
         $statement->execute([
             'titre' => $titre,
             'contenu' => $contenu,
-            'photo' => $photoName
+            'photo' => $photoPath
         ]);
     }
 

@@ -14,7 +14,7 @@
 
             <nav>
                 <div class="nav-header">
-                    <img src="image/logo.png" alt="logo" style="height: 50px;">
+                    <img src="public/image/logo.png" alt="logo" style="height: 50px;">
                     <button class="burger" aria-label="Menu">☰</button>
                 </div>
                 <div class="nav-links">

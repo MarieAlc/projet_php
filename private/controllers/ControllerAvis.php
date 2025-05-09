@@ -29,7 +29,7 @@ public function ajouterAvis() {
             $avis->setDateAvis(date('Y-m-d H:i:s'));
     
             if ($photo && $photo['error'] === UPLOAD_ERR_OK) {
-                $targetDir = "uploads/"; 
+                $targetDir = "public/image/uploads/"; 
                 $targetFile = $targetDir . basename($photo["name"]);
                 move_uploaded_file($photo["tmp_name"], $targetFile);
                 $avis->setPhoto($targetFile);
@@ -71,7 +71,7 @@ public function ajouterAvis() {
         
         if ($photo && $photo['error'] === UPLOAD_ERR_OK) {
            
-            $targetDir = "public/uploads/"; 
+            $targetDir = "public/image/uploads/"; 
             $targetFile = $targetDir . basename($photo["name"]);
             move_uploaded_file($photo["tmp_name"], $targetFile);
             $avis->setPhoto($targetFile);

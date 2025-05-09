@@ -25,6 +25,11 @@ class ControllerProfil extends Controller {
     public function showProfilAdmin(){ 
         $this->verifierConnexion();
         $user = $_SESSION['user'];
+        
+        if ($_SESSION['user']['isAdmin'] != 1) {
+            header('Location: index.php?action=profil');
+            exit;
+        }
 
         $rendezVousManager = new RendezVousManager();
         $serviceManager = new ServiceManager();
@@ -130,7 +135,7 @@ class ControllerProfil extends Controller {
         $views = new Views();
         $views->render('connexion', []);
     }
-    
+
     public function verifConnexion(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail = trim($_POST['mail'] ?? '');

@@ -102,7 +102,8 @@ class ControllerGestionUtilisateur extends Controller {
                     'nom' => $utilisateur->getNom(),
                     'prenom' => $utilisateur->getPrenom(),
                     'mail' => $utilisateur->getMail(),
-                    'telephone' => $utilisateur->getTelephone()
+                    'telephone' => $utilisateur->getTelephone(),
+                    'isAdmin' => $_SESSION['user']['isAdmin']
                 ];
                 $_SESSION['message'] = "Votre profil a été mis à jour avec succès.";
                 header('Location: index.php?action=profil&id=' . $userId);

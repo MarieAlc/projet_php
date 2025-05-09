@@ -1,7 +1,7 @@
 <?php
 
 
-include_once 'api/incluse.php';
+include_once 'private/incluse.php';
 
 
 $action = $_REQUEST['action'] ?? 'accueil';

@@ -5,9 +5,9 @@
             <p><?= $presentation ?></p> 
         </div>
         <div class="images">
-            <img src="image/lampe.jpg" alt="dentiste dans son cabinet" width="300" height="200">
-            <img src="image/radio.jpg" alt="dentiste avec radio" width="300" height="200">
-            <img src="image/siege.jpg" alt="cabinet dentiste" width="300" height="200">
+            <img src="public/image/lampe.jpg" alt="dentiste dans son cabinet" width="300" height="200">
+            <img src="public/image/radio.jpg" alt="dentiste avec radio" width="300" height="200">
+            <img src="public/image/siege.jpg" alt="cabinet dentiste" width="300" height="200">
         </div>
     </section>
     
