@@ -1,5 +1,6 @@
 <?php
-include_once __DIR__ . '\..\models\Avis\AvisManager.php';
+include_once __DIR__ . '/../models/Avis/AvisManager.php';
+
 
 
 

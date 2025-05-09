@@ -76,7 +76,7 @@ class Controller {
         $listeActualites = $actualitesManager -> getListeActualites();
 
         $views = new Views();
-        $views -> render("listeActualites", [
+        $views -> render("listeactualites", [
             'listeActualites' => $listeActualites
         ]);
     }

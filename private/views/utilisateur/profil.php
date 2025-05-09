@@ -23,7 +23,7 @@ if (isset($_SESSION['message'])) {
                 <li>
                     <strong>Date :</strong> <?= htmlspecialchars($rdv->getDate()) ?><br>
                     <strong>Heure :</strong> <?= htmlspecialchars($rdv->getHeure()->format('H:i')) ?><br>
-                    <strong>Motif :</strong> <?= htmlspecialchars($rdv->nomService) ?><br>
+                    <strong>Motif :</strong> <?= htmlspecialchars($rdv->getNomService()) ?><br>
                 </li><br>
             <?php endforeach; ?>
         </ul>

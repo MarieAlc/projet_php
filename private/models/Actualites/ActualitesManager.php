@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../AbstractEntityManager.php';
+require_once '/homepages/9/d4298990792/htdocs/siteweb/private/models/AbstractEntityManager.php';
 
 class ActualitesManager extends AbstractEntityManager {
 

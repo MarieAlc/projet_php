@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../abstractEntity.php';
+include_once __DIR__ . '/../AbstractEntity.php';
 
 class Avis extends AbstractEntity {
     private $id;

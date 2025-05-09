@@ -1,9 +1,9 @@
 <?php
-
+include_once __DIR__ . '/../AbstractEntity.php';
 class Utilisateur extends AbstractEntity {
 
     private int $id;
-    private string $email;
+    private string $mail;
     private string $motDePasse;
     private string $nom;
     private string $prenom;

@@ -141,7 +141,7 @@ class ControllerRendezVous extends Controller {
     
             // Affichage du formulaire de modification
             $views = new Views();
-            $views->render('admin/modifierRendezVous', ['rdv' => $rdv, 'services' => $services]);
+            $views->render('admin/modifierrendezvous', ['rdv' => $rdv, 'services' => $services]);
         } else {
             // Rediriger si l'id est manquant
             header('Location: index.php?action=listerendezvous');
@@ -178,27 +178,100 @@ class ControllerRendezVous extends Controller {
         exit;
     }
     
-    private function envoyerEmailConfirmation($rendezvous) {
-        // Récupérer l'email du patient et les informations du rendez-vous
-        $email_patient = $rendezvous->getMailPatient();
-        $date_rdv = $rendezvous->getDate();
-        $heure_rdv = $rendezvous->getHeure()->format('H:i');
-        $services = $rendezvous->getMotifNom();
+private function envoyerEmailConfirmation($rendezvous) {
+    $mailPatient = $rendezvous->getMailPatient();
+    $date_rdv = $rendezvous->getDate();
+    $heure_rdv = $rendezvous->getHeure()->format('H:i');
+    $services = $rendezvous->getMotifNom();
+
+    // Informations sur l'email
+    $from = "Cabinet Dr. Dupont <alcantara.marie@outlook.fr>";
+    $subject = "Confirmation de votre rendez-vous chez Dr. Dupont";
     
-        $subject = "Confirmation de votre rendez-vous chez Dr. Dupont";
-        $message = "Bonjour,\n\nVotre rendez-vous a été confirmé.\n\nRésumé de votre rendez-vous :\n";
-        $message .= "Date : " . $date_rdv . "\n";
-        $message .= "Heure : " . $heure_rdv . "\n";
-        $message .= "Service : " . $services . "\n\nMerci de votre confiance.\n\nCordialement,\nL'équipe Dr. Dupont";
-        $headers = "From: \"Cabinet Dr. Dupont\" <no-reply@alwaysdata.net>";
-    
-        mail($email_patient, $subject, $message, $headers);
-    
-      
-    }
+    // Corps du message en texte brut
+    $message_text = "Bonjour,\n\nVotre rendez-vous a été confirmé.\n\nRésumé de votre rendez-vous :\n";
+    $message_text .= "Date : " . $date_rdv . "\n";
+    $message_text .= "Heure : " . $heure_rdv . "\n";
+    $message_text .= "Service : " . $services . "\n\nMerci de votre confiance.\n\nCordialement,\nL'équipe Dr. Dupont";
+
+    // Corps du message en HTML
+    $message_html = "
+    <!doctype html>
+    <html>
+      <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+      </head>
+      <body>
+        <h1>Confirmation de votre rendez-vous</h1>
+        <p>Bonjour,</p>
+        <p>Votre rendez-vous a été confirmé.</p>
+        <h3>Résumé de votre rendez-vous :</h3>
+        <ul>
+          <li><strong>Date :</strong> " . $date_rdv . "</li>
+          <li><strong>Heure :</strong> " . $heure_rdv . "</li>
+          <li><strong>Service :</strong> " . $services . "</li>
+        </ul>
+        <p>Merci de votre confiance.</p>
+        <p>Cordialement,<br>L'équipe Dr. Dupont</p>
+      </body>
+    </html>";
+
+    // Paramètres de connexion SMTP
+    $smtp_server = "smtp://sandbox.smtp.mailtrap.io:2525";
+    $smtp_user = "77b0d89431370b";  // Utilisateur Mailtrap
+    $smtp_password = "07d9149997c88f";  // Mot de passe Mailtrap
+
+    // Définition du "From" et du destinataire
+    $from = "Cabinet Dr. Dupont <alcantara.marie@outlook.fr>";
+    $mailPatient = $rendezvous->getMailPatient();
+
+    // En-têtes
+    $headers = [
+        "From: \"$from\"",
+        "To: $mailPatient",  // C'est une chaîne ici, c'est bon
+        "Subject: Confirmation de votre rendez-vous chez Dr. Dupont",
+        "Content-Type: multipart/alternative; boundary=\"boundary-string\""
+    ];
+
+    // Corps de l'email en texte brut et HTML
+    $body = "--boundary-string\r\n";
+    $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: quoted-printable\r\n\r\n";
+    $body .= "Votre rendez-vous est confirmé...\r\n\r\n"; // Exemple de contenu textuel
+
+    $body .= "--boundary-string\r\n";
+    $body .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: quoted-printable\r\n\r\n";
+    $body .= "<html><body>Votre rendez-vous est confirmé...</body></html>"; // Exemple de contenu HTML
+
+    $body .= "--boundary-string--";
+
+    // Initialisation de cURL pour l'envoi de l'email
+  $ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $smtp_server);
+curl_setopt($ch, CURLOPT_USERPWD, "$smtp_user:$smtp_password");
+curl_setopt($ch, CURLOPT_MAIL_FROM, "alcantara.marie@outlook.fr");
+curl_setopt($ch, CURLOPT_MAIL_RCPT, array($mailPatient));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+// Exécution de la requête cURL
+$response = curl_exec($ch);
+
+// Si tu veux afficher la réponse ou l'erreur plus tard
+if (curl_errno($ch)) {
+    // Log ou gestion des erreurs ici
+    error_log('Erreur cURL : ' . curl_error($ch));  // Par exemple dans un fichier log
+} else {
+    // Log ou gestion de la réponse ici si besoin
+    error_log('Réponse : ' . $response);  // Log dans un fichier par exemple
 }
 
+curl_close($ch);
+}
     
     
-
+}
 

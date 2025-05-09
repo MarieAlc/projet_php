@@ -15,7 +15,7 @@ class ControllerProfil extends Controller {
 
         foreach ($rendezvousList as $rdv) {
             $service = $serviceManager->getService($rdv->getMotif());
-            $rdv->nomService = $service ? $service->getNom() : 'Inconnu';
+            $rdv->setNomService($service ? $service->getNom() : 'Inconnu');
         }
 
         $views = new Views();
@@ -40,7 +40,7 @@ class ControllerProfil extends Controller {
 
         foreach ($rendezvousList as $rdv) {
             $service = $serviceManager->getService($rdv->getMotif());
-            $rdv->nomService = $service ? $service->getNom() : 'Inconnu';
+            $rdv->setNomService($service ? $service->getNom() : 'Inconnu');
         }
         $patients = array_filter($utilisateurs, function($utilisateur) {
             return $utilisateur->getIsAdmin() === false;
@@ -58,7 +58,7 @@ class ControllerProfil extends Controller {
     public function deconnexion(){
 
         session_destroy();
-        header('Location: /test/projet_php/index.php?action=accueil');
+        header('Location: index.php?action=accueil');
         exit;
     }
     public function showInscription(){

@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../abstractEntity.php';
+include_once __DIR__ . '/../AbstractEntity.php';
 
 class RendezVous extends AbstractEntity{
     private int $id;
@@ -10,6 +10,7 @@ class RendezVous extends AbstractEntity{
     private int $idClient;
     private string $mailPatient;
     private bool $statut;
+    private string $nomService;
 
     
     public function setStatut (bool $statut): void{
@@ -75,5 +76,12 @@ class RendezVous extends AbstractEntity{
     }
     public function __toString(): string {
         return $this->date . ' à ' . $this->heure->format('H:i') . ' - ' . $this->motif;
+    }
+    public function setNomService(string $nomService): void {
+        $this->nomService = $nomService;
+    }
+
+    public function getNomService(): string {
+        return $this->nomService;
     }
 }

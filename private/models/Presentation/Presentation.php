@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/../abstractEntity.php';
+include_once __DIR__ . '/../AbstractEntity.php';
 
 class Presentation extends AbstractEntity {
     private $id;

@@ -5,6 +5,14 @@ if (!empty($_SESSION['message'])): ?>
     </div>
     <?php unset($_SESSION['message']); ?>
 <?php endif; ?>
+<?php
+if (isset($_SESSION['errors'])) {
+    foreach ($_SESSION['errors'] as $error) {
+        echo '<div class="confirmation-erreur">' . htmlspecialchars($error) . '</div>';
+    }
+    unset($_SESSION['errors']);  
+}
+?>
 
 <h2>Connectez-vous</h2>
 
